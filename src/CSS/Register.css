@@ -81,9 +81,12 @@
 
 .card .text-input
 {
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
     margin-bottom: 8px;
     margin-top: 8px;
-
 }
 
 

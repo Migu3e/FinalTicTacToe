@@ -3,7 +3,14 @@ import './CSS/Register.css';
 import { useState, ChangeEvent, FormEvent } from "react";
 import useLocalStorage, { Player } from "./useLocalStorage";
 
-function Card() {
+
+
+interface RegisterProps {
+    onSwitchToLogin: () => void;
+}
+
+
+function Card({ onSwitchToLogin }: RegisterProps) {
     const [name, setName] = useState("");
     const [players, setPlayers] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
@@ -63,7 +70,7 @@ function Card() {
 
                 <div>
                     <h6 className="card-registered">כבר רשום?</h6>
-                    <button className="card-login">היכנס</button>
+                    <button className="card-login" onClick={onSwitchToLogin}>היכנס</button>
                 </div>
             </div>
         </div>
