@@ -36,14 +36,14 @@ function Login({ onSwitchToRegister }: LoginProps) {
     }
 
     return (
-        <div className="card-container">
-            <div className="card">
-                <img className="card-image" src={X0pic} alt="TicTacImg"/>
-                <h2 className="card-title">TicTacToe</h2>
-                <p className="card-text">Login to play</p>
+        <div className="login-container">
+            <div className="login-card">
+                <img className="login-card-image" src={X0pic} alt="TicTacImg"/>
+                <h2 className="login-card-title">TicTacToe</h2>
+                <p className="login-card-text">Login to play</p>
 
                 <form onSubmit={handleSubmit}>
-                    <div className="text-input">
+                    <div className="login-text-input">
                         <input
                             value={name}
                             onChange={handleTextBoxNameChange}
@@ -52,7 +52,7 @@ function Login({ onSwitchToRegister }: LoginProps) {
                     </div>
 
                     <div>
-                        <button type="submit" className="card-login">היכנס</button>
+                        <button type="submit" className="login-button">היכנס</button>
                     </div>
                 </form>
 
@@ -63,8 +63,8 @@ function Login({ onSwitchToRegister }: LoginProps) {
                 </div>
 
                 <div>
-                    <h6 className="card-register-prompt">לא רשום?</h6>
-                    <button className="card-register" onClick={onSwitchToRegister}>הירשם</button>
+                    <h6 className="register-prompt">לא רשום?</h6>
+                    <button className="register-button" onClick={onSwitchToRegister}>הירשם</button>
                 </div>
             </div>
         </div>
