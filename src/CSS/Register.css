@@ -87,3 +87,34 @@
 }
 
 
+.error-container {
+    height: 60px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    width: 100%;
+}
+
+.error-message.visible {
+    opacity: 1;
+}
+
+.error-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-color: #a5d6a7;
+}
+
