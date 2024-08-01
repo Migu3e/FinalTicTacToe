@@ -1,7 +1,17 @@
-import X0pic from './assets/img.png';
+import X0pic from './assets/react.svg'
 import './CSS/Register.css';
+import { useState, ChangeEvent } from "react";
 
-function Card() {
+
+function Card()
+{
+    const [name, setName] = useState("");
+
+    function handleNameChange(event: ChangeEvent<HTMLInputElement>)
+    {
+        setName(event.target.value);
+    }
+
     return (
         <div className="card-container">
             <div className="card">
@@ -9,7 +19,9 @@ function Card() {
                 <h2 className="card-title">TicTacToe</h2>
                 <p className="card-text">Best TicTacToe</p>
 
-                <div></div>
+                <div className="text-input">
+                    <input value={name} onChange={handleNameChange}/>
+                </div>
 
                 <div>
                     <button className="card-register">הירשם</button>
@@ -17,7 +29,7 @@ function Card() {
 
                 <div>
                     <h6 className="card-registered">כבר רשום?</h6>
-                    <button>היכנס</button>
+                    <button className="card-login">היכנס</button>
                 </div>
             </div>
         </div>

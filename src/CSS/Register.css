@@ -1,6 +1,7 @@
 
 .card-container
 {
+    background: #858585;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +9,7 @@
 }
 .card
 {
+    background: white;
     border: 1px solid hsl(0,0%,80%);
     border-radius: 10px;
     box-shadow: 5px 5px 5px hsla(0,0%,0%,0.1);
@@ -39,6 +41,7 @@
 {
     font-family: Arial,sans-serif;
     color: hsl(0,0%,30%);
+    border-radius: 8%;
 }
 .card .card-register
 {
@@ -48,9 +51,39 @@
     border-radius: 5px;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
+
+.card .card-register:hover {
+    background-color: hsl(0, 0%, 40%);
+}
+
+.card .card-login
+{
+    background-color: hsl(0, 0%, 42%);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .card-login:hover {
+    background-color: hsl(0, 0%, 7%);
+}
+
 .card .card-registered
 {
     margin-bottom: 5px;
 }
+
+
+.card .text-input
+{
+    margin-bottom: 8px;
+    margin-top: 8px;
+
+}
+
 

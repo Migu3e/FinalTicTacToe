@@ -1,5 +1,5 @@
 
-import Card from './Register.tsx'
+import Register from './Register.tsx'
 
 
 
@@ -7,7 +7,7 @@ function App()
 {
     return (
         <>
-            <Card/>
+            <Register/>
 
         </>
     )
