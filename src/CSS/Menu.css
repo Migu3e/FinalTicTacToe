@@ -12,9 +12,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background: linear-gradient(135deg, #f0fdff, #78ecff,#00ecff);
+    background: linear-gradient(115deg, #000000, #cdcdcd, #ffffff);
     padding: 10px 20px;
-    box-shadow: 2px 2px 5px rgb(66, 233, 255);
+    box-shadow: 2px 2px 5px rgb(255, 255, 255);
     margin-bottom: 30px;
 }
 
