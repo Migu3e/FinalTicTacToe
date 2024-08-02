@@ -1,22 +1,21 @@
-import { useState } from 'react';
-import Register from './Register';
-import Login from './Login.tsx';
-import './CSS/tra.css';
+import './CSS/Menu.css';
 
-function AuthPage() {
-    const [isRegistering, setIsRegistering] = useState(true);
+
+type MenuPageProps = {
+    onLogout: () => void;
+};
+
+function MenuPage({ onLogout }: MenuPageProps) {
+
 
     return (
-        <div className={`auth-container ${isRegistering ? 'registering' : 'logging-in'}`}>
-            <div className="auth-slider">
-                {isRegistering ? (
-                    <Register onSwitchToLogin={() => setIsRegistering(false)} />
-                ) : (
-                    <Login onSwitchToRegister={() => setIsRegistering(true)} />
-                )}
+        <div>
+            <div>
+                <button className="logout-button" onClick={onLogout}>Logout</button>
             </div>
+
         </div>
     );
 }
 
-export default AuthPage;
+export default MenuPage;

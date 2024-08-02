@@ -5,9 +5,10 @@ import useLocalStorage, { Player } from "./useLocalStorage";
 
 interface LoginProps {
     onSwitchToRegister: () => void;
+    onLoggedIn: () => void;
 }
 
-function Login({ onSwitchToRegister }: LoginProps) {
+function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
     const [name, setName] = useState("");
     const [players] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
@@ -30,6 +31,7 @@ function Login({ onSwitchToRegister }: LoginProps) {
         if (player) {
             setError(`Welcome back, ${player.name}! Your score is ${player.score}.`);
             setName("");
+            onLoggedIn();
         } else {
             setError("Player not found. Please register first.");
         }
