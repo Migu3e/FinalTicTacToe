@@ -31,7 +31,6 @@ function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
         const player = players.find(p => p.name.toLowerCase() === name.toLowerCase());
 
         if (player) {
-            setError(`Welcome back, ${player.name}! Your score is ${player.score}.`);
             setName("");
             onLoggedIn(player);
         } else {
