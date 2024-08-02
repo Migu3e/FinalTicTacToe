@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #000000;
     min-height: 100vh;
-    color: #ffffff;
+    background-color: #f0f0f0;
+    padding: 20px;
 }
 
 .action-bar {
@@ -12,73 +12,108 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border: 1px solid #00ecff;
-    margin: -7px;
-    background-color: #000000;
-    color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 5px 5px 5px hsl(184, 100%, 20%);
+    background: linear-gradient(135deg, #f0fdff, #78ecff,#00ecff);
     padding: 10px 20px;
+    box-shadow: 2px 2px 5px rgb(66, 233, 255);
+    margin-bottom: 30px;
 }
-
-.player-info {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px; /* Ensures the text doesn't touch the left border */
-}
-
-.logout-button-container {
-    margin-right: 20px; /* Ensures the button doesn't touch the right border */
-}
-
-.logout-button {
-    background-color: #000000;
-    color: #00ecff;
-    border: 2px solid #00ecff;
-
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-    background-color: #00ecff;
-    color: #000000;
-    border: 2px solid #00e3ff;}
 
 .menu-options {
     display: flex;
     justify-content: center;
-    align-items: center;
-    margin-top: 50px; /* Add space between the action bar and the menu options */
-    gap: 20px; /* Space between buttons */
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
 }
 
 .menu-button {
-    padding: 20px 40px;
-    border: 2px solid #00ecff;
-    border-radius: 10px;
+    flex: 1;
+    height: 300px;
+    border: none;
+    border-radius: 20px;
     cursor: pointer;
-    transition: transform 0.3s ease, background-color 0.3s ease;
-    color: #ffffff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: left;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.menu-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
 .menu-button.primary {
-    background-color: #000000;
-}
-
-.menu-button.primary:hover {
-    background-color: #241fb8;
-    transform: scale(1.1); /* Scale up on hover */
+    background: linear-gradient(135deg, #00e0ff, #fdfdfd);
+    border: 3px solid #020202;
+    color: #000000;
 }
 
 .menu-button.accent {
-    background-color: #00ffeb;
-    color: black;
+    background: linear-gradient(135deg, #00e3ff, #006895);
+    border: 3px solid #000000;
+
+    color: #070707;
 }
 
-.menu-button.accent:hover {
-    background-color: #372ef2;
-    transform: scale(1.1); /* Scale up on hover */
+.menu-button.secondary {
+    background: linear-gradient(135deg, #004fe3, #00f7ff);
+    color: #000000;
+}
+
+.menu-button::after {
+    content: "→";
+    font-size: 36px;
+    align-self: flex-end;
+}
+
+.logout-button{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 10px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    border: 3px solid #000000;
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: background-color 0.3s ease;
+}
+
+.back-button {
+    background-color: #ffffff;
+    color: #040404;
+    border: 3px solid #000000;
+    padding: 10px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover{
+    background-color: #ff0000;
+    color: #ffffff;
+    border: 3px solid #ff0000;
+
+}
+
+.back-button:hover {
+    background-color: #000000;
+    color: #ffffff;
+    border: 3px solid #000000;}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
 }

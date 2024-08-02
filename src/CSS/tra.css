@@ -7,6 +7,8 @@
 html, body {
     margin: 0;
     padding: 0;
-    border: none; /* Remove any borders */
-    background-color: transparent; /* Ensure no background color is applied */
+    border: 0;
+    height: 100%;
+    width: 100%;
+    background: #000000; /* Background color to match your design */
 }
