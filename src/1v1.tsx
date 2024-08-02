@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 
 type MenuPageProps = {
     onLogout: () => void;
-    currentPlayer: Player | null;
+    currentPlayer: Player;
     onBack: () => void;
 };
 
-function initializeGame(currentPlayer:Player): void {
+function initializeGame(currentPlayer: Player): void {
     const cells = document.querySelectorAll<HTMLButtonElement>(".cell");
     const statusElement = document.getElementById("status");
 
