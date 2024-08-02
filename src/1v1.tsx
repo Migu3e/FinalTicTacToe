@@ -1,91 +1,78 @@
+import { useState, useEffect } from 'react';
 import './CSS/1v1.css';
-import { Player } from './useLocalStorage';
-import { useEffect } from 'react';
+import useLocalStorage, { updatePlayerScore, Player } from './useLocalStorage';
 
-type MenuPageProps = {
+type GamePageProps = {
     onLogout: () => void;
-    currentPlayer: Player;
+    currentPlayer: Player | null;
     onBack: () => void;
 };
 
-function initializeGame(currentPlayer: Player): void {
-    const cells = document.querySelectorAll<HTMLButtonElement>(".cell");
-    const statusElement = document.getElementById("status");
+const winCombos = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
+    [0, 4, 8], [2, 4, 6]              // Diagonals
+];
 
-    let currentPlayerGame = "X";
-    let gameOver = false;
+function GamePage({ onLogout, currentPlayer, onBack }: GamePageProps) {
+    const [players, setPlayers] = useLocalStorage('players', []);
+    const [board, setBoard] = useState<string[]>(Array(9).fill(''));
+    const [currentPlayerGame, setCurrentPlayerGame] = useState('X');
+    const [gameOver, setGameOver] = useState(false);
+    const [status, setStatus] = useState("X's turn");
 
-    const winCombos = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
-        [0, 4, 8], [2, 4, 6]              // Diagonals
-    ];
+    useEffect(() => {
+        updateStatus(`${currentPlayerGame}'s turn`);
+    }, [currentPlayerGame]);
 
     function updateStatus(message: string) {
-        if (statusElement) {
-            statusElement.textContent = message;
-        } else {
-            console.error("Status element not found");
-        }
+        setStatus(message);
     }
 
     function makeMove(index: number) {
-        if (!gameOver && cells[index].textContent === "") {
-            cells[index].textContent = currentPlayerGame;
-            checkWin();
-            if (!gameOver) {
-                switchPlayer();
-            }
+        if (!gameOver && board[index] === '') {
+            const newBoard = [...board];
+            newBoard[index] = currentPlayerGame;
+            setBoard(newBoard);
+            checkWin(newBoard);
         }
     }
 
     function switchPlayer() {
-        currentPlayerGame = currentPlayerGame === "X" ? "O" : "X";
-        updateStatus(`${currentPlayerGame}'s turn`);
+        setCurrentPlayerGame(currentPlayerGame === 'X' ? 'O' : 'X');
     }
 
-    function checkWin() {
+    function checkWin(currentBoard: string[]) {
         for (const combo of winCombos) {
-            if (cells[combo[0]].textContent === currentPlayerGame &&
-                cells[combo[1]].textContent === currentPlayerGame &&
-                cells[combo[2]].textContent === currentPlayerGame) {
+            if (currentBoard[combo[0]] === currentPlayerGame &&
+                currentBoard[combo[1]] === currentPlayerGame &&
+                currentBoard[combo[2]] === currentPlayerGame) {
                 updateStatus(`${currentPlayerGame} won the game!`);
-                if (currentPlayerGame === "X")
-                {
+                if (currentPlayerGame === 'X' && currentPlayer) {
+                    const updatedPlayers = updatePlayerScore(players, currentPlayer.name);
+                    setPlayers(updatedPlayers);
                     currentPlayer.score = currentPlayer.score + 1;
                 }
-                gameOver = true;
+                setGameOver(true);
                 return;
             }
         }
 
-        const isDraw = Array.from(cells).every(cell => cell.textContent !== "");
+        const isDraw = currentBoard.every(cell => cell !== '');
         if (isDraw) {
             updateStatus("It's a tie!");
-            gameOver = true;
+            setGameOver(true);
+        } else {
+            switchPlayer();
         }
     }
 
     function resetGame() {
-        cells.forEach(cell => cell.textContent = "");
-        currentPlayerGame = "X";
-        gameOver = false;
+        setBoard(Array(9).fill(''));
+        setCurrentPlayerGame('X');
+        setGameOver(false);
         updateStatus("X's turn");
     }
-
-    cells.forEach((cell, index) => {
-        cell.addEventListener("click", () => makeMove(index));
-    });
-
-    document.getElementById("reset")?.addEventListener("click", resetGame);
-
-    updateStatus("X's turn");
-}
-
-function GamePage({ onLogout, currentPlayer, onBack }: MenuPageProps) {
-    useEffect(() => {
-        initializeGame(currentPlayer);
-    }, []);
 
     return (
         <div className="game-container">
@@ -107,18 +94,14 @@ function GamePage({ onLogout, currentPlayer, onBack }: MenuPageProps) {
             </div>
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
-                <button className="cell" data-index="0"></button>
-                <button className="cell" data-index="1"></button>
-                <button className="cell" data-index="2"></button>
-                <button className="cell" data-index="3"></button>
-                <button className="cell" data-index="4"></button>
-                <button className="cell" data-index="5"></button>
-                <button className="cell" data-index="6"></button>
-                <button className="cell" data-index="7"></button>
-                <button className="cell" data-index="8"></button>
+                {board.map((cell, index) => (
+                    <button key={index} className="cell" onClick={() => makeMove(index)}>
+                        {cell}
+                    </button>
+                ))}
             </div>
-            <div id="status">X's turn</div>
-            <button id="reset">Reset Game</button>
+            <div id="status">{status}</div>
+            <button id="reset" onClick={resetGame}>Reset Game</button>
         </div>
     );
 }

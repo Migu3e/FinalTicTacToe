@@ -34,11 +34,11 @@ function MenuPage({ onLogout, currentPlayer, onOptionClick,onBack }: MenuPagePro
                     <span>1v1</span>
                     <span>play 1v1 with the friends you dont have.</span>
                 </button>
-                <button className="menu-button accent" onClick={() => onOptionClick('1vPC')}>
+                <button className="menu-button accent" onClick={() => onOptionClick('scoreboard')}>
                     <span>ScoreBoard</span>
                     <span>to see how bad you are</span>
                 </button>
-                <button className="menu-button secondary" onClick={() => onOptionClick('scoreboard')}>
+                <button className="menu-button secondary" onClick={() => onOptionClick('1vPC')}>
                     <span>1vPC</span>
                     <span>if you want to lose</span>
                 </button>
