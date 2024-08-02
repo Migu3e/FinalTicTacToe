@@ -4,9 +4,10 @@ import { Player } from './useLocalStorage';
 type MenuPageProps = {
     onLogout: () => void;
     currentPlayer: Player | null;
+    onOptionClick: (option: '1v1' | 'scoreboard' | '1vPC') => void;
 };
 
-function MenuPage({ onLogout, currentPlayer }: MenuPageProps) {
+function MenuPage({ onLogout, currentPlayer, onOptionClick }: MenuPageProps) {
     return (
         <div className="menu-container">
             <div className="action-bar">
@@ -24,9 +25,9 @@ function MenuPage({ onLogout, currentPlayer }: MenuPageProps) {
             </div>
 
             <div className="menu-options">
-                <button className="menu-button primary">1v1</button>
-                <button className="menu-button accent">Scoreboard</button>
-                <button className="menu-button primary">1vPC</button>
+                <button className="menu-button primary" onClick={() => onOptionClick('1v1')}>1v1</button>
+                <button className="menu-button accent" onClick={() => onOptionClick('scoreboard')}>Scoreboard</button>
+                <button className="menu-button primary" onClick={() => onOptionClick('1vPC')}>1vPC</button>
             </div>
         </div>
     );
