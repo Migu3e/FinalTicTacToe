@@ -1,14 +1,12 @@
-
-.card-container
-{
-    background: #858585;
+.login-container {
+    background: #4a4a4a;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* This ensures the container takes up the full viewport height */
 }
-.card
-{
+
+.login-card {
     background: white;
     border: 1px solid hsl(0,0%,80%);
     border-radius: 10px;
@@ -16,51 +14,31 @@
     padding: 20px;
     margin: 10px;
     text-align: center;
-    maxwidth: 300px;
+    max-width: 300px;
     display: inline-block;
-
 }
 
-.card .card-image
-{
+.login-card .login-card-image {
     max-width: 60%;
     height: auto;
     border-radius: 8%;
     margin: 10px;
-
 }
 
-.card .card-title
-{
+.login-card .login-card-title {
     font-family: Arial,sans-serif;
     margin: 0;
     color: hsl(0,0%,20%);
 }
 
-.card .card-text
-{
+.login-card .login-card-text {
     font-family: Arial,sans-serif;
     color: hsl(0,0%,30%);
     border-radius: 8%;
 }
-.card .card-register
-{
-    background-color: hsl(0, 0%, 17%);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
 
-.card .card-register:hover {
-    background-color: hsl(0, 0%, 40%);
-}
-
-.card .card-login
-{
-    background-color: hsl(0, 0%, 42%);
+.login-card .login-button {
+    background-color: hsl(0, 0%, 24%);
     color: #ffffff;
     padding: 10px 20px;
     border-radius: 5px;
@@ -69,19 +47,29 @@
     transition: background-color 0.3s ease;
 }
 
-.card .card-login:hover {
-    background-color: hsl(0, 0%, 7%);
+.login-card .login-button:hover {
+    background-color: hsl(0, 0%, 36%);
 }
 
-.card .card-registered
-{
+.login-card .register-button {
+    background-color: hsl(0, 0%, 54%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-card .register-button:hover {
+    background-color: hsl(0, 0%, 23%);
+}
+
+.login-card .register-prompt {
     margin-bottom: 5px;
 }
 
-
-.card .text-input
-{
-
+.login-card .login-text-input {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -89,8 +77,7 @@
     margin-top: 8px;
 }
 
-
-.error-container {
+.login-error-container {
     height: 60px;
     margin-top: 10px;
     display: flex;
@@ -98,7 +85,7 @@
     justify-content: center;
 }
 
-.error-message {
+.login-error-message {
     background-color: #ffebee;
     color: #d32f2f;
     border: 1px solid #ef9a9a;
@@ -111,13 +98,12 @@
     width: 100%;
 }
 
-.error-message.visible {
+.login-error-message.visible {
     opacity: 1;
 }
 
-.error-message.success {
+.login-error-message.success {
     background-color: #e8f5e9;
     color: #2e7d32;
     border-color: #a5d6a7;
 }
-
