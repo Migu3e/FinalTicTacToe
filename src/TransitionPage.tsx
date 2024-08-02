@@ -3,7 +3,7 @@ import Register from './Register';
 import Login from './Login';
 import MenuPage from './Menu';
 import OneVOne from './1v1.tsx';
-import Scoreboard from './Scoreboard.tsx';
+import Scorebourd from './Scorebourd.tsx';
 
 
 import { Player } from './useLocalStorage';
@@ -85,7 +85,7 @@ function TransitionPage() {
                 </>
             )}
             {currentPage === 'scoreboard' && (
-                <Scoreboard
+                <Scorebourd
                     onBack={handleBack}
                 />
             )}
@@ -100,7 +100,7 @@ function TransitionPage() {
             {!['register', 'login', 'menu', 'scoreboard', '1v1'].includes(currentPage) && (
                 <div>
                     <h1>Oops! Something went wrong.</h1>
-                    <p>Unrecognized page: {currentPage}</p>
+                    <h1>Unrecognized page: {currentPage}</h1>
                     <button onClick={() => setCurrentPage('menu')}>Go to Menu</button>
                 </div>
             )}
