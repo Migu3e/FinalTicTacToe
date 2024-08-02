@@ -30,9 +30,18 @@ function MenuPage({ onLogout, currentPlayer, onOptionClick,onBack }: MenuPagePro
             </div>
 
             <div className="menu-options">
-                <button className="menu-button primary" onClick={() => onOptionClick('1v1')}>1v1</button>
-                <button className="menu-button accent" onClick={() => onOptionClick('scoreboard')}>Scoreboard</button>
-                <button className="menu-button primary" onClick={() => onOptionClick('1vPC')}>1vPC</button>
+                <button className="menu-button primary" onClick={() => onOptionClick('1v1')}>
+                    <span>1v1</span>
+                    <span>play 1v1 with the friends you dont have.</span>
+                </button>
+                <button className="menu-button accent" onClick={() => onOptionClick('1vPC')}>
+                    <span>ScoreBoard</span>
+                    <span>to see how bad you are</span>
+                </button>
+                <button className="menu-button secondary" onClick={() => onOptionClick('scoreboard')}>
+                    <span>1vPC</span>
+                    <span>if you want to lose</span>
+                </button>
             </div>
         </div>
     );

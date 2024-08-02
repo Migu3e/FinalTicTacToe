@@ -62,12 +62,6 @@ h1 {
     cursor: pointer;
 }
 
-.logout-button-container-1v1 {
-    margin-right: 20px;
-    margin-left: 20px;
-
-}
-
 #reset:hover {
     background-color: #050505;
     border: 3px solid #00e3ff;
