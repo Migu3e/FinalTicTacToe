@@ -1,16 +1,20 @@
+
+
 .login-container {
-    background: #4a4a4a;
+    background: #191919;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* This ensures the container takes up the full viewport height */
+    border: none; /* Remove any borders from parent containers if any */
+
 }
 
 .login-card {
-    background: white;
-    border: 1px solid hsl(0,0%,80%);
+    background: #ffffff;
+    border: 1px solid hsl(0, 0%, 53%);
     border-radius: 10px;
-    box-shadow: 5px 5px 5px hsla(0,0%,0%,0.1);
+    box-shadow: 5px 5px 5px hsla(0,0%,0%,0.2);
     padding: 20px;
     margin: 10px;
     text-align: center;
@@ -48,21 +52,25 @@
 }
 
 .login-card .login-button:hover {
-    background-color: hsl(0, 0%, 36%);
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
+
 }
 
 .login-card .register-button {
-    background-color: hsl(0, 0%, 54%);
-    color: white;
+    background-color: hsl(0, 0%, 100%);
+    color: #000000;
+    border: 3px solid #000000;
+    box-shadow: 1px 1px 1px hsl(0, 0%, 0%);
     padding: 10px 20px;
     border-radius: 5px;
-    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .login-card .register-button:hover {
-    background-color: hsl(0, 0%, 23%);
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
 }
 
 .login-card .register-prompt {

@@ -7,20 +7,24 @@ import useLocalStorage, { Player } from "./useLocalStorage";
 
 interface RegisterProps {
     onSwitchToLogin: () => void;
+    onRegistered: () => void;
 }
 
 
-function Card({ onSwitchToLogin }: RegisterProps) {
+function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
     const [name, setName] = useState("");
-    const [players, setPlayers] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
+    const [players, setPlayers] = useLocalStorage("players", [] as Player[]);
 
     function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) {
         setName(event.target.value);
         setError("");
     }
+    function timeout(delay: number) {
+        return new Promise( res => setTimeout(res, delay) );
+    }
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         if (name.trim() === "") {
@@ -34,11 +38,20 @@ function Card({ onSwitchToLogin }: RegisterProps) {
             setError("המשתמש כבר רשום לצערנו");
             return;
         }
-
         const newPlayer: Player = { name: name.trim(), score: 0 };
+
+
+        const updatedPlayers = [...players, newPlayer];
+        console.log("Updated players:", updatedPlayers); // Debug log
+
+
         setPlayers([...players, newPlayer]);
+
         setName("");
         setError("משתמש נרשם בהצלחה רבה מאוד");
+        await timeout(1000); //for 1 sec delay becuse it wont register if it dosent do it
+
+        onRegistered();
     }
 
     return (
@@ -77,4 +90,4 @@ function Card({ onSwitchToLogin }: RegisterProps) {
     );
 }
 
-export default Card;
+export default Register;
