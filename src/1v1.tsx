@@ -4,15 +4,15 @@ import { useEffect } from 'react';
 
 type MenuPageProps = {
     onLogout: () => void;
-    currentPlayer: Player | null;
+    currentPlayer: Player;
     onBack: () => void;
 };
 
-function initializeGame(): void {
+function initializeGame(currentPlayer: Player): void {
     const cells = document.querySelectorAll<HTMLButtonElement>(".cell");
     const statusElement = document.getElementById("status");
 
-    let currentPlayer = "X";
+    let currentPlayerGame = "X";
     let gameOver = false;
 
     const winCombos = [
@@ -31,7 +31,7 @@ function initializeGame(): void {
 
     function makeMove(index: number) {
         if (!gameOver && cells[index].textContent === "") {
-            cells[index].textContent = currentPlayer;
+            cells[index].textContent = currentPlayerGame;
             checkWin();
             if (!gameOver) {
                 switchPlayer();
@@ -40,16 +40,20 @@ function initializeGame(): void {
     }
 
     function switchPlayer() {
-        currentPlayer = currentPlayer === "X" ? "O" : "X";
-        updateStatus(`${currentPlayer}'s turn`);
+        currentPlayerGame = currentPlayerGame === "X" ? "O" : "X";
+        updateStatus(`${currentPlayerGame}'s turn`);
     }
 
     function checkWin() {
         for (const combo of winCombos) {
-            if (cells[combo[0]].textContent === currentPlayer &&
-                cells[combo[1]].textContent === currentPlayer &&
-                cells[combo[2]].textContent === currentPlayer) {
-                updateStatus(`${currentPlayer} won the game!`);
+            if (cells[combo[0]].textContent === currentPlayerGame &&
+                cells[combo[1]].textContent === currentPlayerGame &&
+                cells[combo[2]].textContent === currentPlayerGame) {
+                updateStatus(`${currentPlayerGame} won the game!`);
+                if (currentPlayerGame === "X")
+                {
+                    currentPlayer.score = currentPlayer.score + 1;
+                }
                 gameOver = true;
                 return;
             }
@@ -64,7 +68,7 @@ function initializeGame(): void {
 
     function resetGame() {
         cells.forEach(cell => cell.textContent = "");
-        currentPlayer = "X";
+        currentPlayerGame = "X";
         gameOver = false;
         updateStatus("X's turn");
     }
@@ -80,7 +84,7 @@ function initializeGame(): void {
 
 function GamePage({ onLogout, currentPlayer, onBack }: MenuPageProps) {
     useEffect(() => {
-        initializeGame();
+        initializeGame(currentPlayer);
     }, []);
 
     return (
