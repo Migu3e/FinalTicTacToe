@@ -1,7 +1,7 @@
 
 .card-container
 {
-    background: #858585;
+    background: #191919;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -60,17 +60,18 @@
 
 .card .card-login
 {
-    background-color: hsl(0, 0%, 42%);
-    color: #ffffff;
+    background-color: hsl(0, 0%, 100%);
+    color: #000000;
+    border: 3px solid #000000;
+    box-shadow: 1px 1px 1px hsl(0, 0%, 0%);
     padding: 10px 20px;
     border-radius: 5px;
-    border: none;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .card .card-login:hover {
-    background-color: hsl(0, 0%, 7%);
+    background-color: hsl(0, 0%, 62%);
 }
 
 .card .card-registered
