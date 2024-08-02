@@ -1,10 +1,11 @@
-import './CSS/Menu.css';
+import './CSS/1v1.css';
 import { Player } from './useLocalStorage';
 import { useEffect } from 'react';
 
 type MenuPageProps = {
     onLogout: () => void;
     currentPlayer: Player | null;
+    onBack: () => void;
 };
 
 function initializeGame(): void {
@@ -44,8 +45,6 @@ function initializeGame(): void {
     }
 
     function checkWin() {
-
-
         for (const combo of winCombos) {
             if (cells[combo[0]].textContent === currentPlayer &&
                 cells[combo[1]].textContent === currentPlayer &&
@@ -79,7 +78,7 @@ function initializeGame(): void {
     updateStatus("X's turn");
 }
 
-function GamePage({ onLogout, currentPlayer }: MenuPageProps) {
+function GamePage({ onLogout, currentPlayer, onBack }: MenuPageProps) {
     useEffect(() => {
         initializeGame();
     }, []);
@@ -87,6 +86,9 @@ function GamePage({ onLogout, currentPlayer }: MenuPageProps) {
     return (
         <div className="game-container">
             <div className="action-bar">
+                <div className="logout-button-container">
+                    <button className="back-button" onClick={onBack}>Back</button>
+                </div>
                 <div className="player-info">
                     {currentPlayer && (
                         <>
@@ -95,7 +97,7 @@ function GamePage({ onLogout, currentPlayer }: MenuPageProps) {
                         </>
                     )}
                 </div>
-                <div className="logout-button-container">
+                <div className="logout-button-container-1v1">
                     <button className="logout-button" onClick={onLogout}>Logout</button>
                 </div>
             </div>

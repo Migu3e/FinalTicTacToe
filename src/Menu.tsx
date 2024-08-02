@@ -5,12 +5,17 @@ type MenuPageProps = {
     onLogout: () => void;
     currentPlayer: Player | null;
     onOptionClick: (option: '1v1' | 'scoreboard' | '1vPC') => void;
+    onBack: () => void;
+
 };
 
-function MenuPage({ onLogout, currentPlayer, onOptionClick }: MenuPageProps) {
+function MenuPage({ onLogout, currentPlayer, onOptionClick,onBack }: MenuPageProps) {
     return (
-        <div className="menu-container">
+        <div className="game-container">
             <div className="action-bar">
+                <div className="logout-button-container">
+                    <button className="back-button" onClick={onBack}>Back</button>
+                </div>
                 <div className="player-info">
                     {currentPlayer && (
                         <>

@@ -38,6 +38,22 @@ function TransitionPage() {
         console.log("player:", currentPlayer); // Debug log
         return currentPlayer;
     }
+    function handleBack() {
+        console.log("player:", currentPage); // Debug log
+        if (currentPage === 'menu')
+        {
+            handleLogout();
+        }
+        else
+        {
+            setCurrentPage('menu');
+        }
+    }
+
+
+
+
+
 
 
 
@@ -62,6 +78,7 @@ function TransitionPage() {
                         onLogout={handleLogout}
                         currentPlayer={currentPlayer}
                         onOptionClick={handleMenuOptionClick}
+                        onBack={handleBack}
                     />
                 </>
             )}
@@ -69,6 +86,7 @@ function TransitionPage() {
                 <OneVOne
                     onLogout={handleLogout}
                     currentPlayer={currentPlayer}
+                    onBack={handleBack}
                 />
             )}
 

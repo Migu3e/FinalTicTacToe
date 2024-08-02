@@ -28,7 +28,9 @@
 }
 
 .logout-button-container {
-    margin-right: 20px; /* Ensures the button doesn't touch the right border */
+    margin-right: 20px;
+    margin-left: 20px;
+
 }
 
 .logout-button {
@@ -82,3 +84,20 @@
     background-color: #372ef2;
     transform: scale(1.1); /* Scale up on hover */
 }
+
+
+.back-button {
+    background-color: #00ecff;
+    color: #000000;
+    border: 2px solid #000000;
+
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #000000;
+    color: #00ecff;
+    border: 2px solid #00ecff;}
