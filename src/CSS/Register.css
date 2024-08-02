@@ -71,7 +71,8 @@
 }
 
 .card .card-login:hover {
-    background-color: hsl(0, 0%, 62%);
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
 }
 
 .card .card-registered

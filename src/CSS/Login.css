@@ -52,7 +52,9 @@
 }
 
 .login-card .login-button:hover {
-    background-color: hsl(0, 0%, 36%);
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
+
 }
 
 .login-card .register-button {
@@ -67,7 +69,8 @@
 }
 
 .login-card .register-button:hover {
-    background-color: hsl(0, 0%, 23%);
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
 }
 
 .login-card .register-prompt {
