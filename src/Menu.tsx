@@ -3,12 +3,12 @@ import Register from './Register';
 import Login from './Login.tsx';
 import './CSS/tra.css';
 
-function MangarPage() {
+function AuthPage() {
     const [isRegistering, setIsRegistering] = useState(true);
 
     return (
-        <div className={`manage-container ${isRegistering ? 'registering' : 'logging-in'}`}>
-            <div>
+        <div className={`auth-container ${isRegistering ? 'registering' : 'logging-in'}`}>
+            <div className="auth-slider">
                 {isRegistering ? (
                     <Register onSwitchToLogin={() => setIsRegistering(false)} />
                 ) : (
@@ -19,4 +19,4 @@ function MangarPage() {
     );
 }
 
-export default MangarPage;
+export default AuthPage;
