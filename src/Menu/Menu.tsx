@@ -1,5 +1,5 @@
-import './CSS/Menu.css';
-import { Player } from './useLocalStorage';
+import './Menu.css';
+import { Player } from '../useLocalStorage.tsx';
 
 type MenuPageProps = {
     onLogout: () => void;

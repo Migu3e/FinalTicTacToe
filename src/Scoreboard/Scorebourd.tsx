@@ -1,6 +1,6 @@
 import React from 'react';
-import useLocalStorage from './useLocalStorage';
-import './CSS/Scoreboard.css';
+import useLocalStorage from '../useLocalStorage.tsx';
+import './Scoreboard.css';
 
 interface Player {
     name: string;
@@ -9,18 +9,19 @@ interface Player {
 
 interface ScoreboardProps {
     onBack: () => void;
+    currentPlayer: Player | null;
+    onLogout: () => void;
 }
 
 const bubbleSortPlayersByScore = (players: Player[]): Player[] => {
     const sortedPlayers:Player[] = [...players];
-    let n = sortedPlayers.length;
-    let swapped;
+    let n : number = sortedPlayers.length;
+    let swapped : boolean;
 
     do {
         swapped = false;
         for (let i = 1; i < n; i++) {
             if (sortedPlayers[i - 1].score < sortedPlayers[i].score) {
-                // Swap players
                 const temp = sortedPlayers[i - 1];
                 sortedPlayers[i - 1] = sortedPlayers[i];
                 sortedPlayers[i] = temp;
@@ -42,13 +43,25 @@ const createPlayerRow = (player: Player): JSX.Element => {
     );
 };
 
-const Scoreboard: React.FC<ScoreboardProps> = ({ onBack }) => {
+const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }) => {
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];
 
     const sortedPlayers = bubbleSortPlayersByScore(players);
 
     return (
         <div className="scoreboard-container">
+            <div className="scoreboard-action-bar">
+                <button className="scoreboard-back-button" onClick={onBack}>Back</button>
+                <div className="scoreboard-player-info">
+                    {currentPlayer && (
+                        <>
+                            <span>Player: {currentPlayer.name}</span>
+                            <span>Score: {currentPlayer.score}</span>
+                        </>
+                    )}
+                </div>
+                <button className="scoreboard-logout-button" onClick={onLogout}>Logout</button>
+            </div>
             <h1>Scoreboard</h1>
             <table>
                 <thead>

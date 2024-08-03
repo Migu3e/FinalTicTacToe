@@ -13,7 +13,7 @@
     align-items: center;
     width: 100%;
     background: linear-gradient(115deg, #000000, #cdcdcd, #ffffff);
-    padding: 10px 20px;
+    padding: 5px 20px;
     box-shadow: 2px 2px 5px rgb(255, 255, 255);
     margin-bottom: 30px;
 }
@@ -50,27 +50,35 @@
 }
 
 .menu-button.primary {
-    background: linear-gradient(135deg, #00e0ff, #fdfdfd);
+    background: linear-gradient(135deg, #1d1e1e, #d5d4d4);
     border: 3px solid #020202;
-    color: #000000;
+    color: #fafafa;
 }
 
 .menu-button.accent {
-    background: linear-gradient(135deg, #00e3ff, #006895);
+    background: linear-gradient(135deg, #ffffff, #808080);
     border: 3px solid #000000;
 
     color: #070707;
 }
 
+.menu-button.accent:hover {
+    background: linear-gradient(135deg, #353535, #000000);
+    border: 3px solid #ffffff;
+
+    color: #ffffff;
+
+}
+
 .menu-button.secondary {
-    background: linear-gradient(135deg, #004fe3, #00f7ff);
-    color: #000000;
+    background: linear-gradient(135deg, #040404, #bcbcbc);
+    color: #ffffff;
 }
 
 .menu-button::after {
     content: "→";
     font-size: 36px;
-    align-self: flex-end;
+    align-self: auto;
 }
 
 .logout-button{
@@ -116,4 +124,11 @@
     display: flex;
     flex-direction: column;
     font-weight: bold;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    border-radius: 5px;
+    padding: 5px;
+    background: linear-gradient(35deg, #bbf8ff, #39e7fd, #ccf8ff);
+    border: 1px solid #00e3ff;
+
 }
