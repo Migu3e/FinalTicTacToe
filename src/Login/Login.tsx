@@ -6,8 +6,6 @@ import useLocalStorage, { Player } from "../useLocalStorage.tsx";
 interface LoginProps {
     onSwitchToRegister: () => void;
     onLoggedIn: (player: Player) => void;
-    getCurrentPlayer: () => Player | null;
-
 }
 
 function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {

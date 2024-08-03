@@ -52,7 +52,7 @@ const TransitionPage: React.FC = () => {
                     <Login
                         onSwitchToRegister={() => navigateTo('register')}
                         onLoggedIn={handleLogin}
-                        getCurrentPlayer={() => currentPlayer}
+
                     />
                 );
 

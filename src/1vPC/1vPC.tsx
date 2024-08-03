@@ -16,49 +16,43 @@ const winCombos : number[][] = [
 
 function GamePage({ onLogout, currentPlayer, onBack }: GamePageProps) {
     const [players, setPlayers] = useLocalStorage('players', []);
-    //gets the players for local storage
     const [board, setBoard] = useState<string[]>(Array(9).fill(''));
-    // the board
     const [currentPlayerGame, setCurrentPlayerGame] = useState('X');
-    // if x or 0
     const [gameOver, setGameOver] = useState(false);
-    // if the came is over by win or draw
-    const [status, setStatus] = useState("X's turn");
-    // the messsage status
+    const [status, setStatus] = useState("Your turn");
 
+    useEffect(() => {
+        if (currentPlayerGame === 'O' && !gameOver) {
+            const pcMove = getBestMove(board);
+            makeMove(pcMove);
+        }
+    }, [currentPlayerGame, gameOver]);
 
-    useEffect(():void => {
-        const statusMessage = `${currentPlayerGame}'s turn`;
-
-        updateStatus(statusMessage);
-
-    }, [currentPlayerGame]);
-
-    function updateStatus(message: string):void {
+    function updateStatus(message: string): void {
         setStatus(message);
     }
 
-    function makeMove(index: number):void {
+    function makeMove(index: number): void {
         if (!gameOver && board[index] === '') {
-            const newBoard :string[] = [...board];
+            const newBoard = [...board];
             newBoard[index] = currentPlayerGame;
             setBoard(newBoard);
             checkWin(newBoard);
         }
     }
 
-    function switchPlayer():void {
+    function switchPlayer(): void {
         setCurrentPlayerGame(currentPlayerGame === 'X' ? 'O' : 'X');
     }
 
-    function checkWin(currentBoard: string[]):void {
+    function checkWin(currentBoard: string[]): void {
         for (const combo of winCombos) {
             if (currentBoard[combo[0]] === currentPlayerGame &&
                 currentBoard[combo[1]] === currentPlayerGame &&
                 currentBoard[combo[2]] === currentPlayerGame) {
-                updateStatus(`${currentPlayerGame} won the game!`);
+                updateStatus(currentPlayerGame === 'X' ? "You won!" : "AI won!");
                 if (currentPlayerGame === 'X' && currentPlayer) {
-                    const updatedPlayers:Player[] = updatePlayerScore(players, currentPlayer.name);
+                    const updatedPlayers = updatePlayerScore(players, currentPlayer.name);
                     setPlayers(updatedPlayers);
                     currentPlayer.score = currentPlayer.score + 1;
                 }
@@ -67,23 +61,123 @@ function GamePage({ onLogout, currentPlayer, onBack }: GamePageProps) {
             }
         }
 
-        const isDraw : boolean = currentBoard.every(cell => cell !== '');
+        const isDraw = currentBoard.every(cell => cell !== '');
         if (isDraw) {
             updateStatus("It's a tie!");
             setGameOver(true);
-        }
-        else
-        {
+        } else {
             switchPlayer();
         }
     }
 
-    function resetGame():void {
+    function resetGame(): void {
         setBoard(Array(9).fill(''));
         setCurrentPlayerGame('X');
         setGameOver(false);
-        updateStatus("X's turn");
+        updateStatus("Your turn");
     }
+
+
+    function minimax(board: string[], depth: number, isMaximizing: boolean): number {
+        if (isMaximizing) {
+            return findBestMaximizingMove(board, depth);
+        } else {
+            return findBestMinimizingMove(board, depth);
+        }
+    }
+
+    function checkWinner(board: string[]): string | null {
+        //winning combinations check
+        for (const [firstIndex, secondIndex, thirdIndex] of winCombos) {
+            const firstCell: string = board[firstIndex];
+            const secondCell: string = board[secondIndex];
+            const thirdCell : string= board[thirdIndex];
+
+            const isWinningCombination: boolean = firstCell !== '' &&
+                firstCell === secondCell &&
+                firstCell === thirdCell;
+
+            if (isWinningCombination) {
+                return firstCell;  // return the winniing player ('x' or '0')
+            }
+        }
+
+        // tie?
+        const isBoardFull = board.every(cell => cell !== '');
+        if (isBoardFull) {
+            return 'tie';
+        }
+
+        // game didnt end no win ot tie.
+        return null;
+    }
+
+
+    function evaluateWinner(winner: string): number {
+        if (winner === 'X') return -1;
+        if (winner === 'O') return 1;
+        return 0; // tie
+    }
+
+    // turn of '0' in culculation
+    function findBestMaximizingMove(board: string[], depth: number): number {
+        const winner: string | null = checkWinner(board);
+        if (winner !== null) {
+            return evaluateWinner(winner);
+        }
+
+        let bestScore = -Infinity;
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = 'O';
+                const score: number = minimax(board, depth + 1, false);
+                board[i] = '';
+                bestScore = Math.max(score, bestScore);
+            }
+        }
+        return bestScore;
+    }
+
+    //turn of 'x' in calculation
+    function findBestMinimizingMove(board: string[], depth: number): number {
+        const winner: string | null = checkWinner(board);
+        if (winner !== null) {
+            return evaluateWinner(winner);
+        }
+
+        let bestScore: number = Infinity;
+        for (let i: number = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = 'X';
+                const score: number = minimax(board, depth + 1, true);
+                board[i] = '';
+                bestScore = Math.min(score, bestScore);
+            }
+        }
+        return bestScore;
+    }
+
+    function getBestMove(board: string[]): number {
+        let bestScore: number = -Infinity;
+        let bestMove: number = -1;
+
+        for (let i = 0; i < 9; i++) {
+            if (board[i] === '') {
+                board[i] = 'O';
+                const score: number = minimax(board, 0, false);
+                board[i] = '';
+                if (score > bestScore) {
+                    bestScore = score;
+                    bestMove = i;
+                }
+            }
+        }
+
+        return bestMove;
+    }
+
+
+
 
     return (
         <div className="game-container">
@@ -103,17 +197,11 @@ function GamePage({ onLogout, currentPlayer, onBack }: GamePageProps) {
                     <button className="logout-button" onClick={onLogout}>Logout</button>
                 </div>
             </div>
-            <h1>Tic-Tac-Toe</h1>
+            <h1>Tic-Tac-Toe vs PC</h1>
             <div className="grid">
-                <button className="cell" onClick={() => makeMove(0)}>{board[0]}</button>
-                <button className="cell" onClick={() => makeMove(1)}>{board[1]}</button>
-                <button className="cell" onClick={() => makeMove(2)}>{board[2]}</button>
-                <button className="cell" onClick={() => makeMove(3)}>{board[3]}</button>
-                <button className="cell" onClick={() => makeMove(4)}>{board[4]}</button>
-                <button className="cell" onClick={() => makeMove(5)}>{board[5]}</button>
-                <button className="cell" onClick={() => makeMove(6)}>{board[6]}</button>
-                <button className="cell" onClick={() => makeMove(7)}>{board[7]}</button>
-                <button className="cell" onClick={() => makeMove(8)}>{board[8]}</button>
+                {board.map((cell, index) => (
+                    <button key={index} className="cell" onClick={() => makeMove(index)}>{cell}</button>
+                ))}
             </div>
             <div id="status">{status}</div>
             <button id="reset" onClick={resetGame}>Reset Game</button>
