@@ -1,112 +1,105 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Register from './Register';
 import Login from './Login';
 import MenuPage from './Menu';
-import OneVOne from './1v1.tsx';
-import Scorebourd from './Scorebourd.tsx';
-
-
+import OneVOne from './1v1';
+import Scoreboard from './Scorebourd';
 import { Player } from './useLocalStorage';
-
 import './CSS/tra.css';
 
-function TransitionPage() {
-    const [currentPage, setCurrentPage] = useState<'register' | 'login' | 'menu' | '1v1' | 'scoreboard' | '1vPC'>('register');
+type PageType = 'register' | 'login' | 'menu' | '1v1' | 'scoreboard' | '1vPC';
+
+const TransitionPage: React.FC = () => {
+    const [currentPage, setCurrentPage] = useState<PageType>('register');
     const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
-    function handleLogin(player: Player):void {
+    const navigateTo = (destinationPage: PageType): void => {
+        // update currret page
+        setCurrentPage(destinationPage);
+    }
+
+    const handleLogin = (player: Player): void => {
         setCurrentPlayer(player);
-        setCurrentPage('menu');
-    }
+        navigateTo('menu');
+    };
 
-    function handleLogout(): void {
+    const handleLogout = (): void => {
         setCurrentPlayer(null);
-        setCurrentPage('login');
-    }
+        navigateTo('login');
+    };
 
-    function handleSwitchToLogin() :void{
-        setCurrentPage('login');
-    }
-
-    function handleSwitchToRegister():void {
-        setCurrentPage('register');
-    }
-
-    function handleMenuOptionClick(option: '1v1' | 'scoreboard' | '1vPC'):void {
-        setCurrentPage(option);
-    }
-
-    function getCurrentPlayer(): Player | null {
-        console.log("player:", currentPlayer); // Debug log
-        return currentPlayer;
-    }
-    function handleBack() :void{
-        console.log("player:", currentPage); // Debug log
-        if (currentPage === 'menu')
-        {
+    const handleBack = (): void => {
+        if (currentPage === 'menu') {
             handleLogout();
+        } else {
+            navigateTo('menu');
         }
-        else
-        {
-            setCurrentPage('menu');
-        }
-    }
+    };
 
+    const renderPage = () => {
+        switch (currentPage) {
+            case 'register':
+                return (
+                    <Register
+                        onSwitchToLogin={() => navigateTo('login')}
+                        onRegistered={() => navigateTo('login')}
+                    />
+                );
 
+            case 'login':
+                return (
+                    <Login
+                        onSwitchToRegister={() => navigateTo('register')}
+                        onLoggedIn={handleLogin}
+                        getCurrentPlayer={() => currentPlayer}
+                    />
+                );
 
-
-
-
-
-
-    return (
-        <div className="transition-container">
-            {currentPage === 'register' && (
-                <Register
-                    onSwitchToLogin={handleSwitchToLogin}
-                    onRegistered={handleSwitchToLogin}
-                />
-            )}
-            {currentPage === 'login' && (
-                <Login
-                    onSwitchToRegister={handleSwitchToRegister}
-                    onLoggedIn={handleLogin}
-                    getCurrentPlayer={getCurrentPlayer}
-                />
-            )}
-            {currentPage === 'menu' && (
-                <>
+            case 'menu':
+                return (
                     <MenuPage
                         onLogout={handleLogout}
                         currentPlayer={currentPlayer}
-                        onOptionClick={handleMenuOptionClick}
+                        onOptionClick={navigateTo}
                         onBack={handleBack}
                     />
-                </>
-            )}
-            {currentPage === 'scoreboard' && (
-                <Scorebourd
-                    onBack={handleBack}
-                />
-            )}
-            {currentPage === '1v1' && (
-                <OneVOne
-                    onLogout={handleLogout}
-                    currentPlayer={currentPlayer}
-                    onBack={handleBack}
-                />
+                );
 
-            )}
-            {!['register', 'login', 'menu', 'scoreboard', '1v1'].includes(currentPage) && (
-                <div>
-                    <h1>Oops! Something went wrong.</h1>
-                    <h1>Unrecognized page: {currentPage}</h1>
-                    <button onClick={() => setCurrentPage('menu')}>Go to Menu</button>
-                </div>
-            )}
+            case 'scoreboard':
+                return (
+                    <Scoreboard
+                        onBack={handleBack}
+                    />
+                );
 
+            case '1v1':
+                return (
+                    <OneVOne
+                        onLogout={handleLogout}
+                        currentPlayer={currentPlayer}
+                        onBack={handleBack}
+                    />
+                );
+
+            default:
+                // Handle unrecognized pages
+                return (
+                    <div>
+                        <h1>לא עובת.</h1>
+                        <h1>Unrecognized page: {currentPage}</h1>
+                        <button onClick={() => navigateTo('menu')}>
+                            Go to Menu
+                        </button>
+                    </div>
+                );
+        }
+    };
+
+    return (
+        <div className="transition-container">
+            {renderPage()}
         </div>
     );
-}
+};
 
 export default TransitionPage;
