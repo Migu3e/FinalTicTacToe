@@ -69,6 +69,8 @@ const TransitionPage: React.FC = () => {
                 return (
                     <Scoreboard
                         onBack={handleBack}
+                        onLogout={handleBack}
+                        currentPlayer={currentPlayer}
                     />
                 );
 

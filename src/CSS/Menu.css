@@ -56,10 +56,18 @@
 }
 
 .menu-button.accent {
-    background: linear-gradient(135deg, #00e3ff, #006895);
+    background: linear-gradient(135deg, #ffffff, #808080);
     border: 3px solid #000000;
 
     color: #070707;
+}
+
+.menu-button.accent:hover {
+    background: linear-gradient(135deg, #353535, #000000);
+    border: 3px solid #ffffff;
+
+    color: #ffffff;
+
 }
 
 .menu-button.secondary {
@@ -70,7 +78,7 @@
 .menu-button::after {
     content: "→";
     font-size: 36px;
-    align-self: flex-end;
+    align-self: auto;
 }
 
 .logout-button{

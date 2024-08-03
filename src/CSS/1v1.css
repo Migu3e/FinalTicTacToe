@@ -23,8 +23,8 @@ h1 {
     grid-template-rows: repeat(3, 80px);
     gap: 5px;
     background-color: #00ecff;
-    padding: 5px;  /* this creates the frame */
-    border: 2px solid #00ecff;  /* this reinforces the frame */
+    padding: 5px;
+    border: 2px solid #00ecff;
     border-radius: 10px;
 
 }

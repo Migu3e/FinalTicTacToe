@@ -9,6 +9,8 @@ interface Player {
 
 interface ScoreboardProps {
     onBack: () => void;
+    currentPlayer: Player | null;
+    onLogout: () => void;
 }
 
 const bubbleSortPlayersByScore = (players: Player[]): Player[] => {
@@ -42,13 +44,29 @@ const createPlayerRow = (player: Player): JSX.Element => {
     );
 };
 
-const Scoreboard: React.FC<ScoreboardProps> = ({ onBack }) => {
+const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }) => {
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];
 
     const sortedPlayers = bubbleSortPlayersByScore(players);
 
     return (
         <div className="scoreboard-container">
+            <div className="action-bar">
+                <div className="logout-button-container">
+                    <button className="back-button" onClick={onBack}>Back</button>
+                </div>
+                <div className="player-info">
+                    {currentPlayer && (
+                        <>
+                            <span>Player: {currentPlayer.name}</span>
+                            <span>Score: {currentPlayer.score}</span>
+                        </>
+                    )}
+                </div>
+                <div className="logout-button-container">
+                    <button className="logout-button" onClick={onLogout}>Logout</button>
+                </div>
+            </div>
             <h1>Scoreboard</h1>
             <table>
                 <thead>
