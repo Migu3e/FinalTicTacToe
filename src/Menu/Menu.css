@@ -12,9 +12,9 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background: linear-gradient(66deg, #0e0e0e, #706e6e, #ffffff);
+    background: linear-gradient(115deg, #000000, #cdcdcd, #ffffff);
     padding: 5px 20px;
-    box-shadow: 2px 2px 5px rgb(97, 96, 96);
+    box-shadow: 2px 2px 5px rgb(255, 255, 255);
     margin-bottom: 30px;
 }
 
@@ -129,6 +129,6 @@
     border-radius: 5px;
     padding: 5px;
     background: linear-gradient(35deg, #bbf8ff, #39e7fd, #ccf8ff);
-    border: 3px solid #020202;
+    border: 1px solid #00e3ff;
 
 }
