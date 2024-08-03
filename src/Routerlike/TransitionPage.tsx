@@ -4,6 +4,7 @@ import Login from '../Login/Login.tsx';
 import MenuPage from '../Menu/Menu.tsx';
 import OneVOne from '../1v1/1v1.tsx';
 import Scoreboard from '../Scoreboard/Scorebourd.tsx';
+import OneVPC from '../1vPC/1vPC.tsx';
 import { Player } from '../useLocalStorage.tsx';
 import './tra.css';
 
@@ -77,6 +78,14 @@ const TransitionPage: React.FC = () => {
             case '1v1':
                 return (
                     <OneVOne
+                        onLogout={handleLogout}
+                        currentPlayer={currentPlayer}
+                        onBack={handleBack}
+                    />
+                );
+            case '1vPC':
+                return (
+                    <OneVPC
                         onLogout={handleLogout}
                         currentPlayer={currentPlayer}
                         onBack={handleBack}
