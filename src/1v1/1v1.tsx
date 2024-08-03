@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import './CSS/1v1.css';
-import useLocalStorage, { updatePlayerScore, Player } from './useLocalStorage';
+import './1v1.css';
+import useLocalStorage, { updatePlayerScore, Player } from '../useLocalStorage.tsx';
 
 type GamePageProps = {
     onLogout: () => void;

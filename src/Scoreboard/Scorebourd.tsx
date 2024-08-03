@@ -1,6 +1,6 @@
 import React from 'react';
-import useLocalStorage from './useLocalStorage';
-import './CSS/Scoreboard.css';
+import useLocalStorage from '../useLocalStorage.tsx';
+import './Scoreboard.css';
 
 interface Player {
     name: string;
@@ -15,14 +15,13 @@ interface ScoreboardProps {
 
 const bubbleSortPlayersByScore = (players: Player[]): Player[] => {
     const sortedPlayers:Player[] = [...players];
-    let n = sortedPlayers.length;
-    let swapped;
+    let n : number = sortedPlayers.length;
+    let swapped : boolean;
 
     do {
         swapped = false;
         for (let i = 1; i < n; i++) {
             if (sortedPlayers[i - 1].score < sortedPlayers[i].score) {
-                // Swap players
                 const temp = sortedPlayers[i - 1];
                 sortedPlayers[i - 1] = sortedPlayers[i];
                 sortedPlayers[i] = temp;
@@ -51,11 +50,9 @@ const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }
 
     return (
         <div className="scoreboard-container">
-            <div className="action-bar">
-                <div className="logout-button-container">
-                    <button className="back-button" onClick={onBack}>Back</button>
-                </div>
-                <div className="player-info">
+            <div className="scoreboard-action-bar">
+                <button className="scoreboard-back-button" onClick={onBack}>Back</button>
+                <div className="scoreboard-player-info">
                     {currentPlayer && (
                         <>
                             <span>Player: {currentPlayer.name}</span>
@@ -63,9 +60,7 @@ const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }
                         </>
                     )}
                 </div>
-                <div className="logout-button-container">
-                    <button className="logout-button" onClick={onLogout}>Logout</button>
-                </div>
+                <button className="scoreboard-logout-button" onClick={onLogout}>Logout</button>
             </div>
             <h1>Scoreboard</h1>
             <table>

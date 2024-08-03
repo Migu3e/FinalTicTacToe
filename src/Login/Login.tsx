@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import X0pic from './assets/react.svg';
-import './CSS/Login.css';
-import useLocalStorage, { Player } from "./useLocalStorage";
+import X0pic from '../assets/react.svg';
+import './Login.css';
+import useLocalStorage, { Player } from "../useLocalStorage.tsx";
 
 interface LoginProps {
     onSwitchToRegister: () => void;

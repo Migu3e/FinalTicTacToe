@@ -1,7 +1,7 @@
-import X0pic from './assets/react.svg'
-import './CSS/Register.css';
+import X0pic from '../assets/react.svg'
+import './Register.css';
 import { useState, ChangeEvent, FormEvent } from "react";
-import useLocalStorage, { Player } from "./useLocalStorage";
+import useLocalStorage, { Player } from "../useLocalStorage.tsx";
 
 
 

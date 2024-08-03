@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Register from './Register';
-import Login from './Login';
-import MenuPage from './Menu';
-import OneVOne from './1v1';
-import Scoreboard from './Scorebourd';
-import { Player } from './useLocalStorage';
-import './CSS/tra.css';
+import Register from '../Register/Register.tsx';
+import Login from '../Login/Login.tsx';
+import MenuPage from '../Menu/Menu.tsx';
+import OneVOne from '../1v1/1v1.tsx';
+import Scoreboard from '../Scoreboard/Scorebourd.tsx';
+import { Player } from '../useLocalStorage.tsx';
+import './tra.css';
 
 type PageType = 'register' | 'login' | 'menu' | '1v1' | 'scoreboard' | '1vPC';
 

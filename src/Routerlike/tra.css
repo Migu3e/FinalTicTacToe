@@ -1,6 +1,6 @@
 .manage-container {
     background-color: transparent;
-    border: none; /* Remove any border */
+    border: none;
 
 
 }
@@ -10,5 +10,5 @@ html, body {
     border: 0;
     height: 100%;
     width: 100%;
-    background: #000000; /* Background color to match your design */
+    background: #000000;
 }
