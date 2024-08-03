@@ -16,7 +16,7 @@ function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
     const [error, setError] = useState("");
     const [players, setPlayers] = useLocalStorage("players", [] as Player[]);
 
-    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) : void {
         setName(event.target.value);
         setError("");
     }
@@ -41,7 +41,7 @@ function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
         const newPlayer: Player = { name: name.trim(), score: 0 };
 
 
-        const updatedPlayers = [...players, newPlayer];
+        const updatedPlayers:Player[] = [...players, newPlayer];
         console.log("Updated players:", updatedPlayers); // Debug log
 
 

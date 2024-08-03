@@ -15,12 +15,12 @@ function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
     const [players] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
 
-    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) : void {
         setName(event.target.value);
         setError("");
     }
 
-    function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
         if (name.trim() === "") {
@@ -28,7 +28,7 @@ function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
             return;
         }
 
-        const player = players.find(p => p.name.toLowerCase() === name.toLowerCase());
+        const player :Player | undefined = players.find(p => p.name.toLowerCase() === name.toLowerCase());
 
         if (player) {
             setName("");

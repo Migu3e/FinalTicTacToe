@@ -14,7 +14,7 @@ function TransitionPage() {
     const [currentPage, setCurrentPage] = useState<'register' | 'login' | 'menu' | '1v1' | 'scoreboard' | '1vPC'>('register');
     const [currentPlayer, setCurrentPlayer] = useState<Player | null>(null);
 
-    function handleLogin(player: Player) {
+    function handleLogin(player: Player):void {
         setCurrentPlayer(player);
         setCurrentPage('menu');
     }
@@ -24,15 +24,15 @@ function TransitionPage() {
         setCurrentPage('login');
     }
 
-    function handleSwitchToLogin() {
+    function handleSwitchToLogin() :void{
         setCurrentPage('login');
     }
 
-    function handleSwitchToRegister() {
+    function handleSwitchToRegister():void {
         setCurrentPage('register');
     }
 
-    function handleMenuOptionClick(option: '1v1' | 'scoreboard' | '1vPC') {
+    function handleMenuOptionClick(option: '1v1' | 'scoreboard' | '1vPC'):void {
         setCurrentPage(option);
     }
 
@@ -40,7 +40,7 @@ function TransitionPage() {
         console.log("player:", currentPlayer); // Debug log
         return currentPlayer;
     }
-    function handleBack() {
+    function handleBack() :void{
         console.log("player:", currentPage); // Debug log
         if (currentPage === 'menu')
         {
