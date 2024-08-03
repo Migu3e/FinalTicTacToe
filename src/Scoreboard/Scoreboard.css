@@ -1,7 +1,7 @@
 /* Scoreboard.css */
 
 .scoreboard-container {
-    background-color: black;
+    background-color: #191919;
     color: white;
     font-family: Arial, sans-serif;
     display: flex;
@@ -102,8 +102,8 @@ th, td {
 }
 
 th {
-    background-color: #a8a7a7;
-    color: #ffffff;
+    background: linear-gradient(180deg, #c1c1c1, #fdfdfd, #4e4e4e);
+    color: #050505;
 }
 
 tr:nth-child(even) {

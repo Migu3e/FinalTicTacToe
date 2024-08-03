@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import './1v1.css';
+import './1vPC.css';
 import useLocalStorage, { updatePlayerScore, Player } from '../useLocalStorage.tsx';
 
 type GamePageProps = {

@@ -51,7 +51,13 @@
 
 .menu-button.primary {
     background: linear-gradient(135deg, #1d1e1e, #d5d4d4);
-    border: 3px solid #020202;
+    border: 3px solid #191919;
+    color: #fafafa;
+}
+
+.menu-button.primary:hover {
+    background: linear-gradient(135deg, #00ffff, #000000, #f9ffff);
+    border: 3px solid #191919;
     color: #fafafa;
 }
 
@@ -72,7 +78,17 @@
 
 .menu-button.secondary {
     background: linear-gradient(135deg, #040404, #bcbcbc);
+    border: 3px solid #191919;
+
     color: #ffffff;
+
+}
+.menu-button.secondary:hover {
+    background: linear-gradient(40deg, #fffbfb, #000000, #ff0000);
+    border: 3px solid #191919;
+
+    color: #ffffff;
+
 }
 
 .menu-button::after {
