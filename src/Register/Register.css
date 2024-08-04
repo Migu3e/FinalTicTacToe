@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh; /* This ensures the container takes up the full viewport height */
+    min-width: 100vh;
 }
 .card
 {
@@ -16,7 +17,7 @@
     padding: 20px;
     margin: 10px;
     text-align: center;
-    maxwidth: 300px;
+    min-width: 250px;
     display: inline-block;
 
 }

@@ -5,6 +5,8 @@
     min-height: 100vh;
     background-color: #f0f0f0;
     padding: 20px;
+    box-sizing: border-box; /* Ensure padding is included in height calculation */
+
 }
 
 .action-bar {
@@ -16,6 +18,8 @@
     padding: 5px 20px;
     box-shadow: 2px 2px 5px rgb(255, 255, 255);
     margin-bottom: 30px;
+    box-sizing: border-box; /* Ensure padding and border are included in width calculation */
+
 }
 
 .menu-options {
@@ -51,7 +55,13 @@
 
 .menu-button.primary {
     background: linear-gradient(135deg, #1d1e1e, #d5d4d4);
-    border: 3px solid #020202;
+    border: 3px solid #191919;
+    color: #fafafa;
+}
+
+.menu-button.primary:hover {
+    background: linear-gradient(135deg, #00ffff, #000000, #f9ffff);
+    border: 3px solid #191919;
     color: #fafafa;
 }
 
@@ -72,7 +82,17 @@
 
 .menu-button.secondary {
     background: linear-gradient(135deg, #040404, #bcbcbc);
+    border: 3px solid #191919;
+
     color: #ffffff;
+
+}
+.menu-button.secondary:hover {
+    background: linear-gradient(40deg, #fffbfb, #000000, #ff0000);
+    border: 3px solid #191919;
+
+    color: #ffffff;
+
 }
 
 .menu-button::after {
@@ -85,7 +105,6 @@
     background-color: #000000;
     color: #ffffff;
     padding: 10px 20px;
-    margin-left: 20px;
     margin-right: 20px;
     border-radius: 5px;
     border: 3px solid #000000;
@@ -100,7 +119,6 @@
     color: #040404;
     border: 3px solid #000000;
     padding: 10px 20px;
-    margin-left: 20px;
     margin-right: 20px;
     border-radius: 5px;
     font-weight: bold;

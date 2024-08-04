@@ -7,9 +7,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #000000;
+    background-color: #191919;
     margin: 0;
     box-sizing: border-box;
+    
 }
 
 h1 {
