@@ -6,7 +6,7 @@ import {useNavigationHelpers} from "../UseFunctions.ts";
 import useLocalStorage from '../useLocalStorage.tsx';
 import {
     useBoardState, updateStatus, makeMove, checkWin, resetGame, winCombos
-} from '../JointGameFunc.tsx';
+} from './BaseFunction.tsx';
 
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);

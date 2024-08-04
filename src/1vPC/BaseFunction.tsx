@@ -1,6 +1,6 @@
 // src/jointGameFunctions.ts
 import { useState, Dispatch, SetStateAction } from 'react';
-import { updatePlayerScore, Player } from './useLocalStorage';
+import { updatePlayerScore, Player } from '../useLocalStorage.tsx';
 
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
