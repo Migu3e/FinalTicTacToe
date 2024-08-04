@@ -1,0 +1,97 @@
+.onevone-container {
+    background: #191919;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.onevone-card {
+    background: #ffffff;
+    border: 1px solid hsl(0, 0%, 53%);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px hsla(0,0%,0%,0.2);
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    min-width: 300px;
+    max-width: 400px;
+    width: 90%;
+}
+
+.onevone-card-title {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    color: hsl(0,0%,20%);
+    margin-bottom: 10px;
+}
+
+.onevone-card-text {
+    font-family: Arial, sans-serif;
+    color: hsl(0,0%,30%);
+    margin-bottom: 20px;
+}
+
+.onevone-text-input {
+    width: 100%;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.onevone-text-input input {
+    width: 100%;
+    max-width: 250px;
+    padding: 10px;
+    border: 1px solid hsl(0, 0%, 80%);
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.onevone-button {
+    background-color: hsl(0, 0%, 24%);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 2px solid hsl(0, 0%, 24%);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    width: 100%;
+    max-width: 250px;
+}
+
+.onevone-button:hover {
+    background-color: hsl(0, 0%, 100%);
+    color: #000000;
+    border: 2px solid hsl(0, 0%, 0%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 16px;
+    width: 100%;
+    max-width: 250px;}
+
+.onevone-error-container {
+    height: 40px;
+    margin-top: 10px;
+    padding-bottom: 40px;
+}
+
+.onevone-error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.onevone-error-message.visible {
+    opacity: 1;
+}

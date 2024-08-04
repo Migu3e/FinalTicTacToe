@@ -28,7 +28,7 @@ function MenuPage() {
             </div>
 
             <div className="menu-options">
-                <button className="menu-button primary" onClick={() => handleOptionClick('1v1')}>
+                <button className="menu-button primary" onClick={() => handleOptionClick('1v1menu')}>
                     <span>1v1</span>
                     <span>play 1v1 with the friends you dont have.</span>
                 </button>
