@@ -2,7 +2,8 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage, { Player } from "../useLocalStorage";
 import { useName } from '../NameSave';
-import './1v1menu.css';  // Import the new CSS file
+import './1v1menu.css';
+import X0pic from "../assets/react.svg";
 
 function OneVOneMenu() {
     const [player1Name, setPlayer1Name] = useState("");
@@ -46,6 +47,8 @@ function OneVOneMenu() {
     return (
         <div className="onevone-container">
             <div className="onevone-card">
+                <img className="login-card-image" src={X0pic} alt="TicTacImg"/>
+
                 <h2 className="onevone-card-title">1v1 TicTacToe</h2>
                 <p className="onevone-card-text">Enter player names to start</p>
 

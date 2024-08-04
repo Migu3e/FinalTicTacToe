@@ -1,4 +1,3 @@
-// src/GamePage1vPC.tsx
 import {useEffect} from 'react';
 import './1vPC.css';
 import {useName} from "../NameSave.tsx";

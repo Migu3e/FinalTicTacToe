@@ -1,4 +1,3 @@
-// src/jointGameFunctions.ts
 import { useState, Dispatch, SetStateAction } from 'react';
 import { updatePlayerScore, Player } from '../useLocalStorage.tsx';
 
