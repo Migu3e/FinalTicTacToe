@@ -1,17 +1,14 @@
-import React from 'react';
 import useLocalStorage from '../useLocalStorage.tsx';
 import './Scoreboard.css';
+import { useName } from '../NameSave';
+import {useNavigationHelpers} from "../UseFunctions.ts";
+
 
 interface Player {
     name: string;
     score: number;
 }
 
-interface ScoreboardProps {
-    onBack: () => void;
-    currentPlayer: Player | null;
-    onLogout: () => void;
-}
 
 const bubbleSortPlayersByScore = (players: Player[]): Player[] => {
     const sortedPlayers:Player[] = [...players];
@@ -42,16 +39,17 @@ const createPlayerRow = (player: Player): JSX.Element => {
         </tr>
     );
 };
-
-const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }) => {
+function Scoreboard()
+{
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];
-
+    const { currentPlayer  } = useName();
     const sortedPlayers = bubbleSortPlayersByScore(players);
+    const { handleLogout, handleBack } = useNavigationHelpers();
 
     return (
         <div className="scoreboard-container">
             <div className="scoreboard-action-bar">
-                <button className="scoreboard-back-button" onClick={onBack}>Back</button>
+                <button className="scoreboard-back-button" onClick={handleBack}>Back</button>
                 <div className="scoreboard-player-info">
                     {currentPlayer && (
                         <>
@@ -60,7 +58,7 @@ const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }
                         </>
                     )}
                 </div>
-                <button className="scoreboard-logout-button" onClick={onLogout}>Logout</button>
+                <button className="scoreboard-logout-button" onClick={handleLogout}>Logout</button>
             </div>
             <h1>Scoreboard</h1>
             <table>
@@ -75,7 +73,7 @@ const Scoreboard: React.FC<ScoreboardProps> = ({currentPlayer, onBack,onLogout }
 
                 </tbody>
             </table>
-            <button onClick={onBack}>Back</button>
+            <button onClick={handleBack}>Back</button>
         </div>
     );
 };

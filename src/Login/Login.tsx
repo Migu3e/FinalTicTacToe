@@ -1,17 +1,16 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { useNavigate } from 'react-router-dom';
 import X0pic from '../assets/react.svg';
 import './Login.css';
 import useLocalStorage, { Player } from "../useLocalStorage.tsx";
+import { useName } from '../NameSave';
 
-interface LoginProps {
-    onSwitchToRegister: () => void;
-    onLoggedIn: (player: Player) => void;
-}
-
-function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
+function Login() {
     const [name, setName] = useState("");
     const [players] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const { setCurrentPlayer } = useName();
 
     function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) : void {
         setName(event.target.value);
@@ -30,7 +29,8 @@ function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
 
         if (player) {
             setName("");
-            onLoggedIn(player);
+            setCurrentPlayer(player);
+            navigate('/menu');
         } else {
             setError("Player not found. Please register first.");
         }
@@ -65,7 +65,7 @@ function Login({ onSwitchToRegister,onLoggedIn }: LoginProps) {
 
                 <div>
                     <h6 className="register-prompt">לא רשום?</h6>
-                    <button className="register-button" onClick={onSwitchToRegister}>הירשם</button>
+                    <button className="register-button" onClick={() => navigate('/register')}>הירשם</button>
                 </div>
             </div>
         </div>

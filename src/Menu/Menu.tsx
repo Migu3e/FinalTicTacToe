@@ -1,44 +1,42 @@
 import './Menu.css';
-import { Player } from '../useLocalStorage.tsx';
+import { useName } from '../NameSave';
+import {useNavigationHelpers} from "../UseFunctions.ts";
 
-type MenuPageProps = {
-    onLogout: () => void;
-    currentPlayer: Player | null;
-    onOptionClick: (option: '1v1' | 'scoreboard' | '1vPC') => void;
-    onBack: () => void;
+function MenuPage() {
+    const { currentPlayer } = useName();
+    const { handleLogout, handleBack ,handleOptionClick} = useNavigationHelpers();
 
-};
 
-function MenuPage({ onLogout, currentPlayer, onOptionClick,onBack }: MenuPageProps) {
+    if (!currentPlayer) {
+        handleLogout();
+        return null;
+    }
+
     return (
         <div className="game-container">
             <div className="action-bar">
                 <div className="logout-button-container">
-                    <button className="back-button" onClick={onBack}>Back</button>
+                    <button className="back-button" onClick={handleBack}>Back</button>
                 </div>
                 <div className="player-info">
-                    {currentPlayer && (
-                        <>
-                            <span>Player: {currentPlayer.name}</span>
-                            <span>Score: {currentPlayer.score}</span>
-                        </>
-                    )}
+                    <span>Player: {currentPlayer.name}</span>
+                    <span>Score: {currentPlayer.score}</span>
                 </div>
                 <div className="logout-button-container">
-                    <button className="logout-button" onClick={onLogout}>Logout</button>
+                    <button className="logout-button" onClick={handleLogout}>Logout</button>
                 </div>
             </div>
 
             <div className="menu-options">
-                <button className="menu-button primary" onClick={() => onOptionClick('1v1')}>
+                <button className="menu-button primary" onClick={() => handleOptionClick('1v1')}>
                     <span>1v1</span>
                     <span>play 1v1 with the friends you dont have.</span>
                 </button>
-                <button className="menu-button accent" onClick={() => onOptionClick('scoreboard')}>
+                <button className="menu-button accent" onClick={() => handleOptionClick('scoreboard')}>
                     <span>ScoreBoard</span>
                     <span>to see how bad you are</span>
                 </button>
-                <button className="menu-button secondary" onClick={() => onOptionClick('1vPC')}>
+                <button className="menu-button secondary" onClick={() => handleOptionClick('1vPC')}>
                     <span>1vPC</span>
                     <span>if you want to lose</span>
                 </button>

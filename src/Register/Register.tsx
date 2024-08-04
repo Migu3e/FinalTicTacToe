@@ -1,30 +1,21 @@
-import X0pic from '../assets/react.svg'
+import X0pic from '../assets/react.svg';
 import './Register.css';
 import { useState, ChangeEvent, FormEvent } from "react";
 import useLocalStorage, { Player } from "../useLocalStorage.tsx";
+import { useNavigate } from 'react-router-dom';
 
-
-
-interface RegisterProps {
-    onSwitchToLogin: () => void;
-    onRegistered: () => void;
-}
-
-
-function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
+function Register() {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
     const [players, setPlayers] = useLocalStorage("players", [] as Player[]);
+    const navigate = useNavigate();
 
-    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) : void {
+    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>): void {
         setName(event.target.value);
         setError("");
     }
-    function timeout(delay: number) {
-        return new Promise( res => setTimeout(res, delay) );
-    }
 
-    async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
         if (name.trim() === "") {
@@ -32,26 +23,23 @@ function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
             return;
         }
 
-        const playerExists : boolean = players.some(player => player.name.toLowerCase() === name.toLowerCase());
+        const playerExists: boolean = players.some(player => player.name.toLowerCase() === name.toLowerCase());
 
         if (playerExists) {
             setError("המשתמש כבר רשום לצערנו");
             return;
         }
+
         const newPlayer: Player = { name: name.trim(), score: 0 };
-
-
-        const updatedPlayers:Player[] = [...players, newPlayer];
+        const updatedPlayers: Player[] = [...players, newPlayer];
         console.log("Updated players:", updatedPlayers); // Debug log
 
-
-        setPlayers([...players, newPlayer]);
-
+        setPlayers(updatedPlayers);
+        
         setName("");
         setError("משתמש נרשם בהצלחה רבה מאוד");
-        await timeout(1000); //for 1 sec delay becuse it wont register if it dosent do it
 
-        onRegistered();
+        // login page nigga
     }
 
     return (
@@ -83,7 +71,7 @@ function Register({ onSwitchToLogin,onRegistered }: RegisterProps) {
 
                 <div>
                     <h6 className="card-registered">כבר רשום?</h6>
-                    <button className="card-login" onClick={onSwitchToLogin}>היכנס</button>
+                    <button className="card-login" onClick={() => navigate('/')}>היכנס</button>
                 </div>
             </div>
         </div>
