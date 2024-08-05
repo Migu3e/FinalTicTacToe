@@ -1,7 +1,7 @@
 import {useEffect} from 'react';
 import './1vPC.css';
+import ActionBar from '../NavActBar.tsx'
 import {useName} from "../NameSave.tsx";
-import {useNavigationHelpers} from "../UseFunctions.ts";
 import useLocalStorage from '../useLocalStorage.tsx';
 import {
     useBoardState, updateStatus, makeMove, checkWin, resetGame, winCombos
@@ -10,7 +10,6 @@ import {
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);
     const {currentPlayer} = useName();
-    const {handleLogout, handleBack} = useNavigationHelpers();
     const {
         board, setBoard, currentPlayerGame, setCurrentPlayerGame,
         gameOver, setGameOver, status, setStatus
@@ -104,23 +103,7 @@ function GamePage() {
 
     return (
         <div className="game-container">
-            <div className="action-bar">
-                <div className="logout-button-container">
-                    <button className="back-button" onClick={handleBack}>Back</button>
-
-                </div>
-                <div className="player-info">
-                    {currentPlayer && (
-                        <>
-                            <span>Player: {currentPlayer.name}</span>
-                            <span>Score: {currentPlayer.score}</span>
-                        </>
-                    )}
-                </div>
-                <div className="logout-button-container-1vPC">
-                    <button className="logout-button" onClick={handleLogout}>Logout</button>
-                </div>
-            </div>
+            <ActionBar/>
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
                 {board.map((cell, index) => (
