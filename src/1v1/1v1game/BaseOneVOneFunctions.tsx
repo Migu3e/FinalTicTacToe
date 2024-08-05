@@ -1,4 +1,4 @@
-import { Player } from '../useLocalStorage';
+import { Player } from '../../useLocalStorage.tsx';
 
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
@@ -16,22 +16,11 @@ export const checkDraw = (board: string[]): boolean => {
 
 export const updatePlayerScore = (players: Player[], winnerName: string): Player[] => {
     return players.map(player =>
-        player.name === winnerName
-            ? { ...player, score: player.score + 1 }
-            : player
+        player.name === winnerName ? { ...player, score: player.score + 1 } : player
     );
 };
 
-export const handleWin = (
-    winner: string,
-    player1: Player | null,
-    player2: Player | null,
-    players: Player[],
-    setPlayers: (players: Player[]) => void,
-    setStatus: (status: string) => void,
-    setGameOver: (gameOver: boolean) => void,
-    currentPlayer: Player | null,
-    setCurrentPlayer: (player: Player | null) => void
+export const handleWin = (winner: string, player1: Player | null, player2: Player | null, players: Player[], setPlayers: (players: Player[]) => void, setStatus: (status: string) => void, setGameOver: (gameOver: boolean) => void, currentPlayer: Player | null, setCurrentPlayer: (player: Player | null) => void
 ) => {
     const winnerName = winner === 'X' ? player1?.name : player2?.name;
     setStatus(`${winnerName} (${winner}) wins!`);
@@ -44,16 +33,7 @@ export const handleWin = (
     }
 };
 
-export const makeMove = (
-    index: number,
-    board: string[],
-    setBoard: (board: string[]) => void,
-    currentPlayerSymbol: string,
-    setCurrentPlayerSymbol: (symbol: string) => void,
-    gameOver: boolean,
-    handleWin: () => void,
-    setStatus: (status: string) => void,
-    setGameOver: (gameOver: boolean) => void
+export const makeMove = (index: number, board: string[], setBoard: (board: string[]) => void, currentPlayerSymbol: string, setCurrentPlayerSymbol: (symbol: string) => void, gameOver: boolean, handleWin: () => void, setStatus: (status: string) => void, setGameOver: (gameOver: boolean) => void
 ) => {
     if (!gameOver && board[index] === '') {
         const newBoard = [...board];
@@ -62,19 +42,12 @@ export const makeMove = (
         if (checkWin(newBoard, currentPlayerSymbol)) 
         {
             handleWin();
-        }
-        
-        else if (checkDraw(newBoard)) 
-        {
+        } else if (checkDraw(newBoard)) {
             setStatus("It's a draw!");
             setGameOver(true);
-        } 
-        
-        else 
-        {
+        } else {
             setCurrentPlayerSymbol(currentPlayerSymbol === 'X' ? 'O' : 'X');
             setStatus(currentPlayerSymbol + " turn");
-
         }
     }
 };

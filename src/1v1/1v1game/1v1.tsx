@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
-import './1v1.css';
-import { useName } from "../NameSave";
-import { useNavigationHelpers } from "../UseFunctions";
-import useLocalStorage, { Player } from '../useLocalStorage';
-import { handleWin,makeMove } from './BaseOneVOneFunctions';
+import '../1v1.css';
+import { useName } from "../../NameSave.tsx";
+import { useNavigationHelpers } from "../../UseFunctions.ts";
+import useLocalStorage, { Player } from '../../useLocalStorage.tsx';
+import { handleWin,makeMove } from './BaseOneVOneFunctions.tsx';
 
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);
     const { currentPlayer, setCurrentPlayer } = useName();
     const { handleLogout, handleBack } = useNavigationHelpers();
-
     const [board, setBoard] = useState<string[]>(Array(9).fill(''));
     const [currentPlayerSymbol, setCurrentPlayerSymbol] = useState('X');
     const [gameOver, setGameOver] = useState(false);
@@ -29,7 +28,6 @@ function GamePage() {
         makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver, currentPlayer, setCurrentPlayer), setStatus, setGameOver);
     };
     
-
     const resetGame = () => {
         setBoard(Array(9).fill(''));
         setCurrentPlayerSymbol('X');
@@ -58,5 +56,4 @@ function GamePage() {
         </div>
     );
 }
-
 export default GamePage;

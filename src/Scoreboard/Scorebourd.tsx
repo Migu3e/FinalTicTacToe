@@ -64,14 +64,6 @@ function Scoreboard()
             <button onClick={handleBack}>Back</button>
         </div>
     );
-};
-
-/*
-map היא פונקציה מובנית בג'אווהזקיפ]ט שמופעלת על מערכים.
-הפונקציה map לוקחת כל אלמנט במערך ומפעילה עליו פונקציה מסוימת, ומחזירה מערך חדש עם התוצאות.
-createPlayerRow:
-זוהי הפונקציה שמועברת לפונקציית map.
-הפונקציה createPlayerRow מקבלת אובייקט של שחקן ויוצרת ממנו שורת טבל
-*/
+}
 
 export default Scoreboard;

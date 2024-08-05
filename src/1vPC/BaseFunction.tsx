@@ -1,6 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react';
 import { updatePlayerScore, Player } from '../useLocalStorage.tsx';
-
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
@@ -12,21 +11,15 @@ export function useBoardState() {
     const [currentPlayerGame, setCurrentPlayerGame] = useState('X');
     const [gameOver, setGameOver] = useState(false);
     const [status, setStatus] = useState("X's turn");
-
     return { board, setBoard, currentPlayerGame, setCurrentPlayerGame, gameOver, setGameOver, status, setStatus };
 }
 
-export function updateStatus(setStatus: Dispatch<SetStateAction<string>>, message: string): void {
+export function updateStatus(setStatus: Dispatch<SetStateAction<string>>, message: string): void
+{
     setStatus(message);
 }
 
-export function makeMove(
-    index: number,
-    board: string[],
-    setBoard: Dispatch<SetStateAction<string[]>>,
-    currentPlayerGame: string,
-    gameOver: boolean,
-    checkWin: (board: string[]) => void
+export function makeMove(index: number, board: string[], setBoard: Dispatch<SetStateAction<string[]>>, currentPlayerGame: string, gameOver: boolean, checkWin: (board: string[]) => void
 ): void {
     if (!gameOver && board[index] === '') {
         const newBoard: string[] = [...board];
@@ -40,20 +33,10 @@ export function switchPlayer(setCurrentPlayerGame: Dispatch<SetStateAction<strin
     setCurrentPlayerGame(currentPlayerGame === 'X' ? 'O' : 'X');
 }
 
-export function checkWin(
-    currentBoard: string[],
-    currentPlayerGame: string,
-    updateStatus: (message: string) => void,
-    setGameOver: Dispatch<SetStateAction<boolean>>,
-    setPlayers: Dispatch<SetStateAction<Player[]>>,
-    players: Player[],
-    currentPlayer: Player | null,
-    setCurrentPlayerGame: Dispatch<SetStateAction<string>>
+export function checkWin(currentBoard: string[], currentPlayerGame: string, updateStatus: (message: string) => void, setGameOver: Dispatch<SetStateAction<boolean>>, setPlayers: Dispatch<SetStateAction<Player[]>>, players: Player[], currentPlayer: Player | null, setCurrentPlayerGame: Dispatch<SetStateAction<string>>
 ): void {
     for (const combo of winCombos) {
-        if (currentBoard[combo[0]] === currentPlayerGame &&
-            currentBoard[combo[1]] === currentPlayerGame &&
-            currentBoard[combo[2]] === currentPlayerGame) {
+        if (currentBoard[combo[0]] === currentPlayerGame && currentBoard[combo[1]] === currentPlayerGame && currentBoard[combo[2]] === currentPlayerGame) {
             updateStatus(`${currentPlayerGame} won the game!`);
             if (currentPlayerGame === 'X' && currentPlayer) {
                 const updatedPlayers: Player[] = updatePlayerScore(players, currentPlayer.name);
@@ -66,7 +49,8 @@ export function checkWin(
     }
 
     const isDraw: boolean = currentBoard.every(cell => cell !== '');
-    if (isDraw) {
+    if (isDraw) 
+    {
         updateStatus("It's a tie!");
         setGameOver(true);
     } else {
@@ -74,11 +58,7 @@ export function checkWin(
     }
 }
 
-export function resetGame(
-    setBoard: Dispatch<SetStateAction<string[]>>,
-    setCurrentPlayerGame: Dispatch<SetStateAction<string>>,
-    setGameOver: Dispatch<SetStateAction<boolean>>,
-    updateStatus: (message: string) => void
+export function resetGame(setBoard: Dispatch<SetStateAction<string[]>>, setCurrentPlayerGame: Dispatch<SetStateAction<string>>, setGameOver: Dispatch<SetStateAction<boolean>>, updateStatus: (message: string) => void
 ): void {
     setBoard(Array(9).fill(''));
     setCurrentPlayerGame('X');

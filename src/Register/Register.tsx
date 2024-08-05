@@ -38,7 +38,6 @@ function Register() {
         
         setName("");
         setError("משתמש נרשם בהצלחה רבה מאוד");
-
         // login page nigga
     }
 
