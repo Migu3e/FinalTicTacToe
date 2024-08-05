@@ -6,8 +6,8 @@ import './tra.css';
 import Register from './Register/Register';
 import Login from './Login/Login';
 import MenuPage from './Menu/Menu';
-import OneVOne from './1v1/1v1';
-import OneVOneMenu from './1v1/1v1menu.tsx';  // Add this import
+import OneVOne from './1v1/1v1game/1v1.tsx';
+import OneVOneMenu from './1v1/1v1menu/OneVSOneMenu.tsx';  // Add this import
 import Scoreboard from './Scoreboard/Scorebourd';
 import OneVPC from './1vPC/1vPC';
 
