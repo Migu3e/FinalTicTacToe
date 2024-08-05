@@ -5,7 +5,7 @@ import { useName } from '../NameSave';
 
 export function LoginLogic() {
     const [name, setName] = useState("");
-    const [players] = useLocalStorage("players", [] as Player[]);
+    const [players] = useLocalStorage("players", []);
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const { setCurrentPlayer } = useName();

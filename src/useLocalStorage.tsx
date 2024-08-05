@@ -23,6 +23,22 @@ export default function useLocalStorage(key: string, initialValue: Player[]) {
     return [value, setValue] as const;
 }
 
+/*
+
+במקום
+
+const [players, setPlayers] = useState<Player[]>(() => {
+  const saved = localStorage.getItem("players");
+  return saved ? JSON.parse(saved) : [];
+});
+
+useEffect(() => {
+  localStorage.setItem("players", JSON.stringify(players));
+}, [players]);
+
+בכל שורה
+ */
+
 //update player score
 export function UpdatePlayerScore(players: Player[], playerName: string): Player[] {
     const updatedPlayers: Player[] = [];
