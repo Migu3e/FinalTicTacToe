@@ -18,7 +18,8 @@ export function useLoginLogic() {
     function handleSubmit(event: FormEvent<HTMLFormElement>): void {
         event.preventDefault();
 
-        if (name.trim() === "") {
+        if (name.trim() === "") 
+        {
             setError("Please enter a name.");
             return;
         }

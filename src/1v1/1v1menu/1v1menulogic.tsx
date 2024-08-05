@@ -1,7 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage, { Player } from "../../useLocalStorage.tsx";
-import { useName } from '../../NameSave.tsx';
 
 export function use1v1MenuLogic() {
     const [player1Name, setPlayer1Name] = useState("");
@@ -9,7 +8,6 @@ export function use1v1MenuLogic() {
     const [players] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");
     const navigate = useNavigate();
-    const { setCurrentPlayer } = useName();
 
     function handleNameChange(event: ChangeEvent<HTMLInputElement>, setName: React.Dispatch<React.SetStateAction<string>>) {
         setName(event.target.value);
@@ -38,7 +36,6 @@ export function use1v1MenuLogic() {
         }
 
         localStorage.setItem('1v1Players', JSON.stringify({ player1: player1.name, player2: player2.name }));
-        setCurrentPlayer(player1);
         navigate('/1v1');
     }
 

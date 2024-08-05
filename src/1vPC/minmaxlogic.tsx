@@ -47,7 +47,8 @@ function findBestMaximizingMove(board: string[], depth: number): number {
 
 function findBestMinimizingMove(board: string[], depth: number): number {
     const winner: string | null = checkWinner(board);
-    if (winner !== null) {
+    if (winner !== null) 
+    {
         return evaluateWinner(winner);
     }
 

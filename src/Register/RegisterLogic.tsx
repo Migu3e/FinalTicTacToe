@@ -30,7 +30,6 @@ export function useRegisterLogic() {
 
         const newPlayer: Player = { name: name.trim(), score: 0 };
         const updatedPlayers: Player[] = [...players, newPlayer];
-        console.log("Updated players:", updatedPlayers); // Debug log
 
         setPlayers(updatedPlayers);
 

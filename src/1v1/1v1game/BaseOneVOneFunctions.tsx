@@ -20,16 +20,13 @@ export const updatePlayerScore = (players: Player[], winnerName: string): Player
     );
 };
 
-export const handleWin = (winner: string, player1: Player | null, player2: Player | null, players: Player[], setPlayers: (players: Player[]) => void, setStatus: (status: string) => void, setGameOver: (gameOver: boolean) => void, currentPlayer: Player | null, setCurrentPlayer: (player: Player | null) => void
+export const handleWin = (winner: string, player1: Player | null, player2: Player | null, players: Player[], setPlayers: (players: Player[]) => void, setStatus: (status: string) => void, setGameOver: (gameOver: boolean) => void
 ) => {
     const winnerName = winner === 'X' ? player1?.name : player2?.name;
     setStatus(`${winnerName} (${winner}) wins!`);
     setGameOver(true);
     if (winnerName) {
         setPlayers(updatePlayerScore(players, winnerName));
-        if (currentPlayer && currentPlayer.name === winnerName) {
-            setCurrentPlayer({...currentPlayer, score: currentPlayer.score + 1});
-        }
     }
 };
 

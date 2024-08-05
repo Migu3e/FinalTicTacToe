@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react';
 import '../1v1.css';
-import { useName } from "../../NameSave.tsx";
-import { useNavigationHelpers } from "../../UseFunctions.ts";
 import useLocalStorage, { Player } from '../../useLocalStorage.tsx';
 import { handleWin,makeMove } from './BaseOneVOneFunctions.tsx';
+import TwoActionBar from "./TwoActionBar.tsx";
 
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);
-    const { currentPlayer, setCurrentPlayer } = useName();
-    const { handleLogout, handleBack } = useNavigationHelpers();
     const [board, setBoard] = useState<string[]>(Array(9).fill(''));
     const [currentPlayerSymbol, setCurrentPlayerSymbol] = useState('X');
     const [gameOver, setGameOver] = useState(false);
@@ -25,7 +22,7 @@ function GamePage() {
         }
     }, [players]);
     const handleMoveInComponent = (index: number) => {
-        makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver, currentPlayer, setCurrentPlayer), setStatus, setGameOver);
+        makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver), setStatus, setGameOver);
     };
     
     const resetGame = () => {
@@ -37,14 +34,7 @@ function GamePage() {
 
     return (
         <div className="game-container">
-            <div className="action-bar">
-                <button className="back-button" onClick={handleBack}>Back</button>
-                <div className="player-info">
-                    {player1 && <span>{player1.name} (X) - Score: {player1.score}</span>}
-                    {player2 && <span>{player2.name} (O) - Score: {player2.score}</span>}
-                </div>
-                <button className="logout-button" onClick={handleLogout}>Logout</button>
-            </div>
+            <TwoActionBar/>
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
                 {board.map((cell, index) => (
