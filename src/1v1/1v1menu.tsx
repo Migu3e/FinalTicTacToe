@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useLocalStorage, { Player } from "../useLocalStorage";
 import { useName } from '../NameSave';
+import ActionBar from '../NavActBar.tsx';
 import './1v1menu.css';
 import X0pic from "../assets/react.svg";
 
@@ -45,38 +46,42 @@ function OneVOneMenu() {
     }
 
     return (
-        <div className="onevone-container">
-            <div className="onevone-card">
-                <img className="login-card-image" src={X0pic} alt="TicTacImg"/>
+        <div>
+                <ActionBar></ActionBar>
+            <div className="onevone-container">
 
-                <h2 className="onevone-card-title">1v1 TicTacToe</h2>
-                <p className="onevone-card-text">Enter player names to start</p>
+                <div className="onevone-card">
+                    <img className="login-card-image" src={X0pic} alt="TicTacImg"/>
 
-                <form onSubmit={handleSubmit}>
-                    <div className="onevone-text-input">
-                        <input
-                            value={player1Name}
-                            onChange={(e) => handleNameChange(e, setPlayer1Name)}
-                            placeholder="Player 1 name"
-                        />
+                    <h2 className="onevone-card-title">1v1 TicTacToe</h2>
+                    <p className="onevone-card-text">Enter player names to start</p>
+
+                    <form onSubmit={handleSubmit}>
+                        <div className="onevone-text-input">
+                            <input
+                                value={player1Name}
+                                onChange={(e) => handleNameChange(e, setPlayer1Name)}
+                                placeholder="Player 1 name"
+                            />
+                        </div>
+                        <div className="onevone-text-input">
+                            <input
+                                value={player2Name}
+                                onChange={(e) => handleNameChange(e, setPlayer2Name)}
+                                placeholder="Player 2 name"
+                            />
+                        </div>
+
+                        <div>
+                            <button type="submit" className="onevone-button">Start Game</button>
+                        </div>
+                    </form>
+
+                    <div className="onevone-error-container">
+                        <p className={`onevone-error-message ${error ? 'visible' : ''}`}>
+                            {error}
+                        </p>
                     </div>
-                    <div className="onevone-text-input">
-                        <input
-                            value={player2Name}
-                            onChange={(e) => handleNameChange(e, setPlayer2Name)}
-                            placeholder="Player 2 name"
-                        />
-                    </div>
-
-                    <div>
-                        <button type="submit" className="onevone-button">Start Game</button>
-                    </div>
-                </form>
-
-                <div className="onevone-error-container">
-                    <p className={`onevone-error-message ${error ? 'visible' : ''}`}>
-                        {error}
-                    </p>
                 </div>
             </div>
         </div>
