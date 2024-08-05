@@ -1,26 +1,30 @@
+import React, {useEffect} from 'react';
 import '../../Menu/Menu.css';
-import { useName } from '../../NameSave.tsx';
-import {useNavigationHelpers} from "../../UseFunctions.ts";
-import useLocalStorage, {Player} from "../../useLocalStorage.tsx";
-import {useEffect, useState} from "react";
+import { useName } from '../../NameSave';
+import { useNavigationHelpers } from "../../UseFunctions";
+import { Player } from '../../useLocalStorage';
 
-function TwoActionBar() {
+interface TwoActionBarProps {
+    players: Player[];
+    player1: Player | null;
+    player2: Player | null;
+    SetPlayer1: (p: Player | null) => void;
+    SetPlayer2: (p: Player | null) => void;
+}
+
+const TwoActionBar: React.FC<TwoActionBarProps> = ({ players, player1, player2, SetPlayer1 , SetPlayer2 }) => {
     const { currentPlayer } = useName();
-    const { handleLogout, handleBack} = useNavigationHelpers();
-
-    const [players] = useLocalStorage('players', []);
-
-    const [player1, setPlayer1] = useState<Player | null>(null);
-    const [player2, setPlayer2] = useState<Player | null>(null);
+    const { handleLogout, handleBack } = useNavigationHelpers();
 
     useEffect(() => {
         const savedPlayers = localStorage.getItem('1v1Players');
         if (savedPlayers) {
             const { player1: p1Name, player2: p2Name } = JSON.parse(savedPlayers);
-            setPlayer1(players.find(p => p.name === p1Name) || null);
-            setPlayer2(players.find(p => p.name === p2Name) || null);
+            SetPlayer1(players.find(p => p.name === p1Name) || null);
+            SetPlayer2(players.find(p => p.name === p2Name) || null);
         }
     }, [players]);
+
     if (!currentPlayer) {
         handleLogout();
         return null;

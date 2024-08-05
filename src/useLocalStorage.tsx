@@ -26,7 +26,7 @@ export default function useLocalStorage(key: string, initialValue: Player[]) {
 }
 
 //update player score
-export function updatePlayerScore(players: Player[], playerName: string): Player[] {
+export function UpdatePlayerScore(players: Player[], playerName: string): Player[] {
     const updatedPlayers: Player[] = [];
 
     for (const player  of players) {

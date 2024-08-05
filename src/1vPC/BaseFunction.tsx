@@ -1,5 +1,5 @@
 import { useState, Dispatch, SetStateAction } from 'react';
-import { updatePlayerScore, Player } from '../useLocalStorage.tsx';
+import { UpdatePlayerScore, Player } from '../useLocalStorage.tsx';
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
     [0, 3, 6], [1, 4, 7], [2, 5, 8],  // Columns
@@ -39,7 +39,7 @@ export function checkWin(currentBoard: string[], currentPlayerGame: string, upda
         if (currentBoard[combo[0]] === currentPlayerGame && currentBoard[combo[1]] === currentPlayerGame && currentBoard[combo[2]] === currentPlayerGame) {
             updateStatus(`${currentPlayerGame} won the game!`);
             if (currentPlayerGame === 'X' && currentPlayer) {
-                const updatedPlayers: Player[] = updatePlayerScore(players, currentPlayer.name);
+                const updatedPlayers: Player[] = UpdatePlayerScore(players, currentPlayer.name);
                 setPlayers(updatedPlayers);
                 currentPlayer.score = currentPlayer.score + 1;
             }

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import '../1v1.css';
 import useLocalStorage, { Player } from '../../useLocalStorage.tsx';
-import { handleWin,makeMove } from './BaseOneVOneFunctions.tsx';
+import { handleWin, makeMove } from './BaseOneVOneFunctions.tsx';
 import TwoActionBar from "./TwoActionBar.tsx";
 
 function GamePage() {
@@ -21,10 +21,11 @@ function GamePage() {
             setPlayer2(players.find(p => p.name === p2Name) || null);
         }
     }, [players]);
+
     const handleMoveInComponent = (index: number) => {
         makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver), setStatus, setGameOver);
     };
-    
+
     const resetGame = () => {
         setBoard(Array(9).fill(''));
         setCurrentPlayerSymbol('X');
@@ -34,7 +35,13 @@ function GamePage() {
 
     return (
         <div className="game-container">
-            <TwoActionBar/>
+            <TwoActionBar
+                players={players}
+                player1={player1}
+                player2={player2}
+                SetPlayer1={setPlayer1}
+                SetPlayer2={setPlayer2}
+            />
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
                 {board.map((cell, index) => (
@@ -46,4 +53,5 @@ function GamePage() {
         </div>
     );
 }
+
 export default GamePage;
