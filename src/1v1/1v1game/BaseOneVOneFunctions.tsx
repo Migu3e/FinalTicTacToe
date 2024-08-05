@@ -1,4 +1,4 @@
-import { Player } from '../../useLocalStorage.tsx';
+import {Player, UpdatePlayerScore} from '../../useLocalStorage.tsx';
 
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows
@@ -14,11 +14,6 @@ export const checkDraw = (board: string[]): boolean => {
     return board.every(cell => cell !== '');
 };
 
-export const updatePlayerScore = (players: Player[], winnerName: string): Player[] => {
-    return players.map(player =>
-        player.name === winnerName ? { ...player, score: player.score + 1 } : player
-    );
-};
 
 export const handleWin = (winner: string, player1: Player | null, player2: Player | null, players: Player[], setPlayers: (players: Player[]) => void, setStatus: (status: string) => void, setGameOver: (gameOver: boolean) => void
 ) => {
@@ -26,7 +21,7 @@ export const handleWin = (winner: string, player1: Player | null, player2: Playe
     setStatus(`${winnerName} (${winner}) wins!`);
     setGameOver(true);
     if (winnerName) {
-        setPlayers(updatePlayerScore(players, winnerName));
+        setPlayers(UpdatePlayerScore(players,winnerName));
     }
 };
 

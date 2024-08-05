@@ -1,6 +1,6 @@
 import X0pic from '../assets/react.svg';
 import './Register.css';
-import { useRegisterLogic } from './RegisterLogic';
+import { RegisterLogic } from './RegisterLogic';
 
 function Register() {
     const {
@@ -9,7 +9,7 @@ function Register() {
         handleTextBoxNameChange,
         handleSubmit,
         navigate
-    } = useRegisterLogic();
+    } = RegisterLogic();
 
     return (
         <div className="card-container">

@@ -1,6 +1,6 @@
 import X0pic from '../assets/react.svg';
 import './Login.css';
-import { useLoginLogic } from './LoginLogic';
+import { LoginLogic } from './LoginLogic';
 
 function Login() {
     const {
@@ -9,7 +9,7 @@ function Login() {
         handleTextBoxNameChange,
         handleSubmit,
         navigate
-    } = useLoginLogic();
+    } = LoginLogic();
 
     return (
         <div className="login-container">

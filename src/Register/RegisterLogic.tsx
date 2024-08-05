@@ -2,7 +2,7 @@ import { useState, ChangeEvent, FormEvent } from "react";
 import useLocalStorage, { Player } from "../useLocalStorage";
 import { useNavigate } from 'react-router-dom';
 
-export function useRegisterLogic() {
+export function RegisterLogic() {
     const [name, setName] = useState("");
     const [error, setError] = useState("");
     const [players, setPlayers] = useLocalStorage("players", [] as Player[]);

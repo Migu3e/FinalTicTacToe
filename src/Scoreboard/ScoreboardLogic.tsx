@@ -6,7 +6,7 @@ export interface Player {
     score: number;
 }
 
-export function useScoreboardLogic() {
+export function ScoreboardLogic() {
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];
     const { handleBack } = useNavigationHelpers();
 

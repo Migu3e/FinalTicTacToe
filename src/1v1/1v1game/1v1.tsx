@@ -22,7 +22,7 @@ function GamePage() {
         }
     }, [players]);
 
-    const handleMoveInComponent = (index: number) => {
+    const handleCellClick = (index: number) => {
         makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver), setStatus, setGameOver);
     };
 
@@ -45,7 +45,7 @@ function GamePage() {
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
                 {board.map((cell, index) => (
-                    <button key={index} className="cell" onClick={() => handleMoveInComponent(index)}>{cell}</button>
+                    <button key={index} className="cell" onClick={() => handleCellClick(index)}>{cell}</button>
                 ))}
             </div>
             <div id="status">{status}</div>

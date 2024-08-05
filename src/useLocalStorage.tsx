@@ -14,10 +14,8 @@ function getSavedValue(key: string, initialValue: Player[]): Player[] {
 }
 
 export default function useLocalStorage(key: string, initialValue: Player[]) {
-    // Use useState with a function to set initial state
     const [value, setValue] = useState<Player[]>(() => getSavedValue(key, initialValue));
 
-    // Use useEffect to update localStorage when value changes
     useEffect(() => {
         localStorage.setItem(key, JSON.stringify(value));
     }, [key, value]);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useLocalStorage, { Player } from "../useLocalStorage";
 import { useName } from '../NameSave';
 
-export function useLoginLogic() {
+export function LoginLogic() {
     const [name, setName] = useState("");
     const [players] = useLocalStorage("players", [] as Player[]);
     const [error, setError] = useState("");

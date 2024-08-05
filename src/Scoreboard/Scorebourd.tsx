@@ -1,9 +1,9 @@
 import './Scoreboard.css';
 import ActionBar from '../NavActBar';
-import { useScoreboardLogic } from './ScoreboardLogic';
+import { ScoreboardLogic } from './ScoreboardLogic';
 
 function Scoreboard() {
-    const prop = useScoreboardLogic();
+    const prop = ScoreboardLogic();
 
     return (
         <div className="scoreboard-container">
