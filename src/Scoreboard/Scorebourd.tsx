@@ -1,6 +1,6 @@
 import useLocalStorage from '../useLocalStorage.tsx';
 import './Scoreboard.css';
-import { useName } from '../NameSave';
+import ActionBar from '../NavActBar.tsx';
 import {useNavigationHelpers} from "../UseFunctions.ts";
 
 
@@ -42,24 +42,12 @@ const createPlayerRow = (player: Player): JSX.Element => {
 function Scoreboard()
 {
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];
-    const { currentPlayer  } = useName();
     const sortedPlayers = bubbleSortPlayersByScore(players);
-    const { handleLogout, handleBack } = useNavigationHelpers();
+    const { handleBack } = useNavigationHelpers();
 
     return (
         <div className="scoreboard-container">
-            <div className="scoreboard-action-bar">
-                <button className="scoreboard-back-button" onClick={handleBack}>Back</button>
-                <div className="scoreboard-player-info">
-                    {currentPlayer && (
-                        <>
-                            <span>Player: {currentPlayer.name}</span>
-                            <span>Score: {currentPlayer.score}</span>
-                        </>
-                    )}
-                </div>
-                <button className="scoreboard-logout-button" onClick={handleLogout}>Logout</button>
-            </div>
+            <ActionBar/>
             <h1>Scoreboard</h1>
             <table>
                 <thead>
