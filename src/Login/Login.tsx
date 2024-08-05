@@ -1,40 +1,15 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
-import { useNavigate } from 'react-router-dom';
 import X0pic from '../assets/react.svg';
 import './Login.css';
-import useLocalStorage, { Player } from "../useLocalStorage.tsx";
-import { useName } from '../NameSave';
+import { useLoginLogic } from './LoginLogic';
 
 function Login() {
-    const [name, setName] = useState("");
-    const [players] = useLocalStorage("players", [] as Player[]);
-    const [error, setError] = useState("");
-    const navigate = useNavigate();
-    const { setCurrentPlayer } = useName();
-
-    function handleTextBoxNameChange(event: ChangeEvent<HTMLInputElement>) : void {
-        setName(event.target.value);
-        setError("");
-    }
-
-    function handleSubmit(event: FormEvent<HTMLFormElement>): void {
-        event.preventDefault();
-
-        if (name.trim() === "") {
-            setError("Please enter a name.");
-            return;
-        }
-
-        const player :Player | undefined = players.find(p => p.name.toLowerCase() === name.toLowerCase());
-
-        if (player) {
-            setName("");
-            setCurrentPlayer(player);
-            navigate('/menu');
-        } else {
-            setError("Player not found. Please register first.");
-        }
-    }
+    const {
+        name,
+        error,
+        handleTextBoxNameChange,
+        handleSubmit,
+        navigate
+    } = useLoginLogic();
 
     return (
         <div className="login-container">
