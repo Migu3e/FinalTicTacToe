@@ -1,0 +1,70 @@
+
+
+
+.game-container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #191919;
+    margin: 0;
+    box-sizing: border-box;
+    
+}
+
+h1 {
+    color: #00ecff;
+    margin-bottom: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-template-rows: repeat(3, 80px);
+    gap: 5px;
+    background-color: #00ecff;
+    padding: 5px;
+    border: 2px solid #00ecff;
+    border-radius: 10px;
+
+}
+
+.cell {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    color: #00ecff;
+    cursor: pointer;
+    border: none;
+}
+
+.cell:hover {
+    background-color: #2a2a2a;
+}
+
+#status {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #00ecff;
+}
+
+#reset {
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #00ecff;
+    border: 3px solid #00e3ff;
+    border-radius: 10px;
+    color: #1a1a1a;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    cursor: pointer;
+}
+
+#reset:hover {
+    background-color: #050505;
+    border: 3px solid #00e3ff;
+    border-radius: 10px;
+    color: #00ecff;}

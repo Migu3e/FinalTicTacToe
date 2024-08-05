@@ -1,0 +1,126 @@
+
+.card-container
+{
+    background: #191919;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* This ensures the container takes up the full viewport height */
+    min-width: 100vh;
+}
+.card
+{
+    background: white;
+    border: 1px solid hsl(0,0%,80%);
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px hsla(0,0%,0%,0.1);
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    min-width: 250px;
+    display: inline-block;
+
+}
+
+.card .card-image
+{
+    max-width: 60%;
+    height: auto;
+    border-radius: 8%;
+    margin: 10px;
+
+}
+
+.card .card-title
+{
+    font-family: Arial,sans-serif;
+    margin: 0;
+    color: hsl(0,0%,20%);
+}
+
+.card .card-text
+{
+    font-family: Arial,sans-serif;
+    color: hsl(0,0%,30%);
+    border-radius: 8%;
+}
+.card .card-register
+{
+    background-color: hsl(0, 0%, 17%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .card-register:hover {
+    background-color: hsl(0, 0%, 40%);
+}
+
+.card .card-login
+{
+    background-color: hsl(0, 0%, 100%);
+    color: #000000;
+    border: 3px solid #000000;
+    box-shadow: 1px 1px 1px hsl(0, 0%, 0%);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .card-login:hover {
+    background-color: hsl(0, 0%, 16%);
+    color: #ffffff;
+}
+
+.card .card-registered
+{
+    margin-bottom: 5px;
+}
+
+
+.card .text-input
+{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+    margin-top: 8px;
+}
+
+
+.error-container {
+    height: 60px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    background-color: #ffebee;
+    color: #d32f2f;
+    border: 1px solid #ef9a9a;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    width: 100%;
+}
+
+.error-message.visible {
+    opacity: 1;
+}
+
+.error-message.success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border-color: #a5d6a7;
+}
+
