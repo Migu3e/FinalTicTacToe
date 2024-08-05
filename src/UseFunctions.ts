@@ -14,7 +14,7 @@ export function useNavigationHelpers() {
     const handleBack = () => {
         navigate('/menu');
     };
-    const handleOptionClick = (option: '1v1' | 'scoreboard' | '1vPC') => {
+    const handleOptionClick = (option: '1v1menu' | 'scoreboard' | '1vPC') => {
         navigate(`/${option}`);
     };
 
