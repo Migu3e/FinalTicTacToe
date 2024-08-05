@@ -3,7 +3,7 @@ import './1v1.css';
 import { useName } from "../NameSave";
 import { useNavigationHelpers } from "../UseFunctions";
 import useLocalStorage, { Player } from '../useLocalStorage';
-import { checkWin, checkDraw, updatePlayerScore } from './BaseOneVOneFunctions';
+import { handleWin,makeMove } from './BaseOneVOneFunctions';
 
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);
@@ -25,34 +25,10 @@ function GamePage() {
             setPlayer2(players.find(p => p.name === p2Name) || null);
         }
     }, [players]);
-
-    const handleWin = (winner: string) => {
-        const winnerName = winner === 'X' ? player1?.name : player2?.name;
-        setStatus(`${winnerName} (${winner}) wins!`);
-        setGameOver(true);
-        if (winnerName) {
-            setPlayers(updatePlayerScore(players, winnerName));
-            if (currentPlayer && currentPlayer.name === winnerName) {
-                setCurrentPlayer({...currentPlayer, score: currentPlayer.score + 1});
-            }
-        }
+    const handleMoveInComponent = (index: number) => {
+        makeMove(index, board, setBoard, currentPlayerSymbol, setCurrentPlayerSymbol, gameOver, () => handleWin(currentPlayerSymbol, player1, player2, players, setPlayers, setStatus, setGameOver, currentPlayer, setCurrentPlayer), setStatus, setGameOver);
     };
-
-    const makeMove = (index: number) => {
-        if (!gameOver && board[index] === '') {
-            const newBoard = [...board];
-            newBoard[index] = currentPlayerSymbol;
-            setBoard(newBoard);
-            if (checkWin(newBoard, currentPlayerSymbol)) {
-                handleWin(currentPlayerSymbol);
-            } else if (checkDraw(newBoard)) {
-                setStatus("It's a draw!");
-                setGameOver(true);
-            } else {
-                setCurrentPlayerSymbol(currentPlayerSymbol === 'X' ? 'O' : 'X');
-            }
-        }
-    };
+    
 
     const resetGame = () => {
         setBoard(Array(9).fill(''));
@@ -74,7 +50,7 @@ function GamePage() {
             <h1>Tic-Tac-Toe</h1>
             <div className="grid">
                 {board.map((cell, index) => (
-                    <button key={index} className="cell" onClick={() => makeMove(index)}>{cell}</button>
+                    <button key={index} className="cell" onClick={() => handleMoveInComponent(index)}>{cell}</button>
                 ))}
             </div>
             <div id="status">{status}</div>

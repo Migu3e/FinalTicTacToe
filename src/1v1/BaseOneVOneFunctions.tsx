@@ -21,3 +21,60 @@ export const updatePlayerScore = (players: Player[], winnerName: string): Player
             : player
     );
 };
+
+export const handleWin = (
+    winner: string,
+    player1: Player | null,
+    player2: Player | null,
+    players: Player[],
+    setPlayers: (players: Player[]) => void,
+    setStatus: (status: string) => void,
+    setGameOver: (gameOver: boolean) => void,
+    currentPlayer: Player | null,
+    setCurrentPlayer: (player: Player | null) => void
+) => {
+    const winnerName = winner === 'X' ? player1?.name : player2?.name;
+    setStatus(`${winnerName} (${winner}) wins!`);
+    setGameOver(true);
+    if (winnerName) {
+        setPlayers(updatePlayerScore(players, winnerName));
+        if (currentPlayer && currentPlayer.name === winnerName) {
+            setCurrentPlayer({...currentPlayer, score: currentPlayer.score + 1});
+        }
+    }
+};
+
+export const makeMove = (
+    index: number,
+    board: string[],
+    setBoard: (board: string[]) => void,
+    currentPlayerSymbol: string,
+    setCurrentPlayerSymbol: (symbol: string) => void,
+    gameOver: boolean,
+    handleWin: () => void,
+    setStatus: (status: string) => void,
+    setGameOver: (gameOver: boolean) => void
+) => {
+    if (!gameOver && board[index] === '') {
+        const newBoard = [...board];
+        newBoard[index] = currentPlayerSymbol;
+        setBoard(newBoard);
+        if (checkWin(newBoard, currentPlayerSymbol)) 
+        {
+            handleWin();
+        }
+        
+        else if (checkDraw(newBoard)) 
+        {
+            setStatus("It's a draw!");
+            setGameOver(true);
+        } 
+        
+        else 
+        {
+            setCurrentPlayerSymbol(currentPlayerSymbol === 'X' ? 'O' : 'X');
+            setStatus(currentPlayerSymbol + " turn");
+
+        }
+    }
+};
