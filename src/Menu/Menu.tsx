@@ -1,10 +1,11 @@
 import './Menu.css';
 import { useName } from '../NameSave';
+import ActionBar from '../NavActBar.tsx';
 import {useNavigationHelpers} from "../UseFunctions.ts";
 
 function MenuPage() {
     const { currentPlayer } = useName();
-    const { handleLogout, handleBack ,handleOptionClick} = useNavigationHelpers();
+    const { handleLogout ,handleOptionClick} = useNavigationHelpers();
 
 
     if (!currentPlayer) {
@@ -14,18 +15,7 @@ function MenuPage() {
 
     return (
         <div className="game-container">
-            <div className="action-bar">
-                <div className="logout-button-container">
-                    <button className="back-button" onClick={handleBack}>Back</button>
-                </div>
-                <div className="player-info">
-                    <span>Player: {currentPlayer.name}</span>
-                    <span>Score: {currentPlayer.score}</span>
-                </div>
-                <div className="logout-button-container">
-                    <button className="logout-button" onClick={handleLogout}>Logout</button>
-                </div>
-            </div>
+          <ActionBar></ActionBar>
 
             <div className="menu-options">
                 <button className="menu-button primary" onClick={() => handleOptionClick('1v1menu')}>
