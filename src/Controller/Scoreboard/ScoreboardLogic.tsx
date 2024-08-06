@@ -1,10 +1,7 @@
 import useLocalStorage from '../../services/Utilities/useLocalStorage.tsx';
 import { useNavigationHelpers } from "../../services/Utilities/UseFunctions.ts";
+import { Player } from '../../Model/Player.tsx';
 
-export interface Player {
-    name: string;
-    score: number;
-}
 
 export function ScoreboardLogic() {
     const [players] = useLocalStorage('players', []) as [Player[], (players: Player[]) => void];

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { Player } from '../Utilities/useLocalStorage.tsx';
+import { Player } from '../../Model/Player.tsx';
 
 interface NameContextType {
     currentPlayer: Player | null;

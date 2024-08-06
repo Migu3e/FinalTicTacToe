@@ -1,6 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
-import useLocalStorage, { Player } from "../../services/Utilities/useLocalStorage.tsx";
+import useLocalStorage from "../../services/Utilities/useLocalStorage.tsx";
+import { Player } from '../../Model/Player.tsx';
+
 
 export function use1v1MenuLogic() {
     const [player1Name, setPlayer1Name] = useState("");

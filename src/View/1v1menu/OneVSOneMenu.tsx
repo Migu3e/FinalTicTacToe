@@ -1,7 +1,7 @@
 import ActionBar from '../../components/navigation/NavActBar.tsx';
 import '../../assets/CSS/1v1menu/1v1menu.css';
 import X0pic from "../../assets/react.svg";
-import { use1v1MenuLogic } from '../../feature/1v1menu/1v1menulogic.tsx';
+import { use1v1MenuLogic } from '../../Controller/1v1menu/1v1menulogic.tsx';
 
 function OneVSOneMenu() {
     const {player1Name, player2Name, error, setPlayer1Name, setPlayer2Name, handleNameChange, handleSubmit} = use1v1MenuLogic();

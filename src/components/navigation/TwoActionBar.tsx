@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import '../../assets/CSS/menu/Menu.css';
 import { useName } from '../../services/stores/NameSave.tsx';
 import { useNavigationHelpers } from "../../services/Utilities/UseFunctions.ts";
-import { Player } from '../../services/Utilities/useLocalStorage.tsx';
+import { Player } from '../../Model/Player.tsx';
 
 interface TwoActionBarProps {
     players: Player[];

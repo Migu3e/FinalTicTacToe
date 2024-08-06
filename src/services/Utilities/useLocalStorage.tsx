@@ -1,9 +1,5 @@
 import { useState, useEffect } from "react";
-
-export interface Player {
-    name: string;
-    score: number;
-}
+import { Player } from '../../Model/Player.tsx';
 
 function getSavedValue(key: string, initialValue: Player[]): Player[] {
     const savedValue  = localStorage.getItem(key);

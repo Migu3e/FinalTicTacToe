@@ -1,5 +1,7 @@
 import { useState, ChangeEvent, FormEvent } from "react";
-import useLocalStorage, { Player } from "../../services/Utilities/useLocalStorage.tsx";
+import useLocalStorage from "../../services/Utilities/useLocalStorage.tsx";
+import { Player } from '../../Model/Player.tsx';
+
 import { useNavigate } from 'react-router-dom';
 
 export function RegisterLogic() {

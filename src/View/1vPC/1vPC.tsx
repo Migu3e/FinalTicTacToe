@@ -3,8 +3,8 @@ import '../../assets/CSS/1vpc/1vPC.css';
 import ActionBar from '../../components/navigation/NavActBar.tsx';
 import { useName } from '../../services/stores/NameSave.tsx';
 import useLocalStorage from '../../services/Utilities/useLocalStorage.tsx';
-import { useBoardState, updateStatus, makeMove, checkWin, resetGame } from '../../feature/1vpc/BaseFunction.tsx';
-import { getBestMove } from '../../feature/1vpc/minmaxlogic.tsx';
+import { useBoardState, updateStatus, makeMove, checkWin, resetGame } from '../../Controller/1vpc/BaseFunction.tsx';
+import { getBestMove } from '../../Controller/1vpc/minmaxlogic.tsx';
 
 function GamePage() {
     const [players, setPlayers] = useLocalStorage('players', []);

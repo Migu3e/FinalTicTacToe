@@ -1,6 +1,6 @@
 import '../../assets/CSS/Scoreboard/Scoreboard.css';
-import ScorebourdTable from '../../feature/Scoreboard/ScorebourdTable.tsx';
-import { ScoreboardLogic } from '../../feature/Scoreboard/ScoreboardLogic.tsx';
+import ScorebourdTable from '../../Controller/Scoreboard/ScorebourdTable.tsx';
+import { ScoreboardLogic } from '../../Controller/Scoreboard/ScoreboardLogic.tsx';
 
 function Scoreboard() {
     const prop = ScoreboardLogic();

@@ -1,6 +1,6 @@
 import X0pic from '../../assets/react.svg';
 import '../../assets/CSS/Login/Login.css';
-import { LoginLogic } from '../../feature/Login/LoginLogic.tsx';
+import { LoginLogic } from '../../Controller/Login/LoginLogic.tsx';
 import LoginForm  from '../../components/forms/LoginFrom.tsx';
 
 

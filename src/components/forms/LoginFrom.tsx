@@ -1,5 +1,5 @@
 import '../../assets/CSS/Login/Login.css';
-import { LoginLogic } from '../../feature/Login/LoginLogic.tsx';
+import { LoginLogic } from '../../Controller/Login/LoginLogic.tsx';
 
 function LoginForm() {
     const {

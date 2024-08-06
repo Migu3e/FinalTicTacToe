@@ -1,4 +1,6 @@
-import {Player, UpdatePlayerScore} from '../../services/Utilities/useLocalStorage.tsx';
+import { UpdatePlayerScore} from '../../services/Utilities/useLocalStorage.tsx';
+import { Player } from '../../Model/Player.tsx';
+
 
 export const winCombos: number[][] = [
     [0, 1, 2], [3, 4, 5], [6, 7, 8],  // Rows

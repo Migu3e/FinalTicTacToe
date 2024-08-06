@@ -1,5 +1,5 @@
 import '../../assets/CSS/Register/Register.css';
-import { RegisterLogic } from '../../feature/Register/RegisterLogic.tsx';
+import { RegisterLogic } from '../../Controller/Register/RegisterLogic.tsx';
 
 
 function RegisterForm() {

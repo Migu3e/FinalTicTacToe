@@ -1,7 +1,7 @@
 import  { useEffect, useState } from 'react';
 import '../../assets/CSS/1v1game/1v1.css';
 import useLocalStorage, { Player } from '../../services/Utilities/useLocalStorage.tsx';
-import { handleWin, makeMove } from '../../feature/1v1game/BaseOneVOneFunctions.tsx';
+import { handleWin, makeMove } from '../../Controller/1v1game/BaseOneVOneFunctions.tsx';
 import TwoActionBar from "../../components/navigation/TwoActionBar.tsx";
 
 function GamePage() {

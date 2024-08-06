@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { NameProvider } from '../services/stores/NameSave.tsx';
 import '../tra.css';
-import Register from '../pages/Register/Register.tsx';
-import Login from '../pages/Login/Login.tsx';
-import MenuPage from '../pages/Menu/Menu.tsx';
-import OneVOne from '../pages/1v1game/1v1.tsx';
-import OneVOneMenu from '../pages/1v1menu/OneVSOneMenu.tsx';  // Add this import
+import Register from '../View/Register/Register.tsx';
+import Login from '../View/Login/Login.tsx';
+import MenuPage from '../View/Menu/Menu.tsx';
+import OneVOne from '../View/1v1game/1v1.tsx';
+import OneVOneMenu from '../View/1v1menu/OneVSOneMenu.tsx';  // Add this import
 import Table from './Scoreboard/ScorebourdTable.tsx';
-import OneVPC from '../pages/1v1game/1v1.tsx';
+import OneVPC from '../View/1v1game/1v1.tsx';
 
 const router = createBrowserRouter([
     {

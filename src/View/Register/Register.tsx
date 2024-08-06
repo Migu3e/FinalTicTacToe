@@ -1,6 +1,6 @@
 import X0pic from '../../assets/react.svg';
 import '../../assets/CSS/Register/Register.css';
-import { RegisterLogic } from '../../feature/Register/RegisterLogic.tsx';
+import { RegisterLogic } from '../../Controller/Register/RegisterLogic.tsx';
 import RegisterFrom  from '../../components/forms/RegisterFrom.tsx';
 
 
